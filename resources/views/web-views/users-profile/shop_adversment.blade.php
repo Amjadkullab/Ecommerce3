@@ -359,7 +359,7 @@ style="margin-right: 10px;position: relative;text-align:center;text-align: right
         </div> --}}
 
     <table id="dataTable" style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};"
-        class="table table-bordered table-hover" width="100%" cellspacing="0">
+        class="table table-bordered table-hover" width="100%" cellspacing="0" >
 
 
             <tr>
@@ -368,65 +368,65 @@ style="margin-right: 10px;position: relative;text-align:center;text-align: right
             </tr>
             <tr>
                 <td class="width50">{{ \App\CPU\translate('name_carrer_sector') }} : {{ $shop->CareerSector->name }}</td>
-                <td class="width50">{{ \App\CPU\translate('name_joptitle') }} :{{ $shop->JobTitle->name }}</td>
+                <td class="width50">{{ \App\CPU\translate('name_joptitle') }} : {{ $shop->JobTitle->name }}</td>
             </tr>
             <tr>
 
-                <td class="width50">{{ \App\CPU\translate('advertise_type') }} :{{ $shop->advertiseType->name }}</td>
-                <td class="width50">{{ \App\CPU\translate('education_degree') }} :{{ $shop->educationDegree->name }} </td>
+                <td class="width50">{{ \App\CPU\translate('advertise_type') }} : {{ $shop->advertiseType->name }}</td>
+                <td class="width50">{{ \App\CPU\translate('education_degree') }} : {{ $shop->educationDegree->name }} </td>
             </tr>
             <tr>
                 <td class="width30">{{ \App\CPU\translate('type_contract') }} : {{ $shop->typeContract->name }}</td>
-                <td class="width50">{{ \App\CPU\translate('work_day') }}:{{ $shop->workDays->workDays }}</td>
+                <td class="width50">{{ \App\CPU\translate('work_day') }} : {{ $shop->workDays->workDays }}</td>
             </tr>
             <tr>
-                <td class="width50">{{ \App\CPU\translate('work_hour') }}:{{ $shop->typeWorkHours->name }}</td>
-                <td class="width50">{{ \App\CPU\translate('salary type') }}:{{ $shop->salary->type }}</td>
+                <td class="width50">{{ \App\CPU\translate('work_hour') }} : {{ $shop->typeWorkHours->name }}</td>
+                <td class="width50">{{ \App\CPU\translate('salary type') }} : {{ $shop->salary->type }}</td>
             </tr>
             <tr>
-                <td class="width50">{{ \App\CPU\translate('experience') }}:{{ $shop->experience->experiences_level }}</td>
-                <td class="width50">{{ \App\CPU\translate('nationality') }}:{{ $shop->nationality->name }}</td>
+                <td class="width50">{{ \App\CPU\translate('experience') }} : {{ $shop->experience->experiences_level }}</td>
+                <td class="width50">{{ \App\CPU\translate('nationality') }} : {{ $shop->nationality->name }}</td>
 
             </tr>
             <tr>
-                <td class="width50">{{ \App\CPU\translate('Work_from_home') }}:{{ $shop->work_from_home }}</td>
-                <td class="width50">{{ \App\CPU\translate('The_job_requires_a_vehicle') }}:{{ $shop->job_requires_vehicle }}</td>
+                <td class="width50">{{ \App\CPU\translate('Work_from_home') }} : {{ $shop->work_from_home }}</td>
+                <td class="width50">{{ \App\CPU\translate('The_job_requires_a_vehicle') }} : {{ $shop->job_requires_vehicle }}</td>
             </tr>
             <tr>
-                <td class="width50">{{ \App\CPU\translate('Driving_license_required') }}:{{ $shop->Require_driver_license }}</td>
-                <td class="width30">{{ \App\CPU\translate('salary') }}:{{ $shop->expected_salary }}</td>
+                <td class="width50">{{ \App\CPU\translate('Driving_license_required') }} : {{ $shop->Require_driver_license }}</td>
+                <td class="width30">{{ \App\CPU\translate('salary') }} : {{ $shop->expected_salary }}</td>
 
             </tr>
 
             <tr>
-                <td class="width30">{{ \App\CPU\translate('sex') }}:{{ $shop->gender }}</td>
-                <td class="width30">{{ \App\CPU\translate('extra_benefit') }}:@foreach ($shop->Benefits as $name)
+                <td class="width30">{{ \App\CPU\translate('sex') }} : {{ $shop->gender }}</td>
+                <td class="width30">{{ \App\CPU\translate('extra_benefit') }} : @foreach ($shop->Benefits as $name)
                     {{ $name->name }}
                 @endforeach</td>
             </tr>
 
             <tr>
 
-                <td class="width30">{{ \App\CPU\translate('skill') }}:  @foreach ($shop->Skills as $name)
+                <td class="width30">{{ \App\CPU\translate('skill_') }} :  @foreach ($shop->Skills as $name)
                     {{ $name->name }}
                 @endforeach</td>
-                <td class="width30">{{ \App\CPU\translate('License_category') }}: @foreach ($shop->licenses as $name)
+                <td class="width30">{{ \App\CPU\translate('License_category') }} : @foreach ($shop->licenses as $name)
                     {{ $name->name }}
                 @endforeach</td>
             </tr>
             <tr>
 
-                <td class="width30">{{ \App\CPU\translate('Language')}}:   @foreach ($shop->Languages as $name)
+                <td class="width30">{{ \App\CPU\translate('language_')}} :   @foreach ($shop->Languages as $name)
                     {{ $name->name }}@endforeach</td>
-                    <td class="width30">{{ \App\CPU\translate('state')}}:  {{ $shop->StateAdvertis->name }}</td>
+                    <td class="width30">{{ \App\CPU\translate('state')}} :  {{ $shop->StateAdvertis->name }}</td>
 
             </tr>
 
 
             <tr>
 
-                <td class="width30">{{ \App\CPU\translate('governorate')}}: {{ $shop->CityAdvertis->name  }}</td>
-                <td class="width30">{{ \App\CPU\translate('Neighborhood')}}: {{ $shop->Governorate->name }}</td>
+                <td class="width30">{{ \App\CPU\translate('governorate')}} : {{ $shop->CityAdvertis->name  }}</td>
+                <td class="width30">{{ \App\CPU\translate('Neighborhood')}} : {{ $shop->Governorate->name }}</td>
             </tr>
 
 

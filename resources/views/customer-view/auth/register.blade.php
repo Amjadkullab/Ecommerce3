@@ -45,7 +45,9 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="reg-phone">{{\App\CPU\translate('phone_number')}}
-                                            <small class="text-primary">( * {{\App\CPU\translate('country_code_is_must')}} {{\App\CPU\translate('like_for_BD_880')}} )</small></label>
+                                            <small class="text-primary">(
+                                                * {{\App\CPU\translate('country_code_is must')}}
+                                                )</small></label>
                                         <input class="form-control" type="number"  value="{{old('phone')}}"  name="phone"
                                                style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
                                                required>

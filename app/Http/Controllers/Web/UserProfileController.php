@@ -892,6 +892,18 @@ public function AddAdvertisement()
         return response()->json();
 
     }
+    public function deleteAdvertis(Request $request){
+
+        $Isdeleted = Advertis::where('id', $request->id)->first();
+
+        $Isdeleted::destroy($request->id);
+
+        return Toastr::success (\App\CPU\translate('deleted_Successfully_'));
+
+
+            }
+
+
     public function disblay_Advertisement(Request $request, $id)
     {
 

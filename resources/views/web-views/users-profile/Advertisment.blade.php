@@ -299,7 +299,7 @@
                         </div>
 
                         <div class="col-12 col-md-5 rest-part"><br>
-                            <label for="">{{ \App\CPU\translate('License_category') }} : </label>  <small style="color: red">* {{\App\CPU\translate('req')}}  </small>
+                            <label for="">{{ \App\CPU\translate('License_category') }} : </label>  <small style="color: red">* {{\App\CPU\translate('opt')}}  </small>
 
                             <select name="license[]" id="license" class="js-example-basic-multiple js-states js-example-responsive form-control color-var-select" multiple>
                                 @foreach ($license as $licenses)
@@ -324,7 +324,7 @@
                         </div>
 
                         <div class="col-12 col-md-5 rest-part"><br>
-                            <label for="">{{ \App\CPU\translate('language') }} : </label>  <small style="color: red">* {{\App\CPU\translate('req')}}  </small>
+                            <label for="">{{ \App\CPU\translate('language_') }} : </label>  <small style="color: red">* {{\App\CPU\translate('req')}}  </small>
 
 
                             <select name="langg[]" id="langg" class="js-example-basic-multiple js-states js-example-responsive form-control color-var-select" multiple>
@@ -363,7 +363,7 @@
                         </div>
 
                         <div class="col-12 col-md-5 rest-part"><br>
-                            <label for="" >{{ \App\CPU\translate('skill') }} : </label>  <small style="color: red">* {{\App\CPU\translate('opt')}}  </small>
+                            <label for="" >{{ \App\CPU\translate('skill_') }} : </label>  <small style="color: red">* {{\App\CPU\translate('opt')}}  </small>
 
                             <select name="skill[]" id="skill" multiple class="js-example-basic-multiple js-states js-example-responsive form-control color-var-select">
                                 @foreach ($skill as $skills)
@@ -419,7 +419,7 @@
                         </div>
 
                         <div class="col-12 col-md-5 rest-part"><br>
-                            <label for="">{{ \App\CPU\translate('Neighborhood') }} : </label>  <small style="color: red">* {{\App\CPU\translate('req')}}  </small>
+                            <label for="">{{ \App\CPU\translate('Neighborhood') }} : </label>  <small style="color: red">* {{\App\CPU\translate('opt')}}  </small>
 
                             <select name="governorates_id" id="governorates_id"
                                 class="js-example-basic-single js-states js-example-responsive form-control color-var-select">

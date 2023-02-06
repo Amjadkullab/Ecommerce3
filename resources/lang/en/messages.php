@@ -2489,6 +2489,10 @@
   'expected_salary'=>'expected salary',
   'Filiter_'=>' Filiter',
   'Here you can view and manage the ads that you have added'=>'Here you can view and manage the advertisement that you have added',
-
+  'jobs_filiter'=>'jobs filiter',
+  'Here you can see all jobs for all majors and fields'=>'Here you can see all jobs for all majors and fields ',
+  'required_'=>'required',
+  'to work_for'=>'to work for',
+  'Do you want to delete this ad of yours?'=>'Do you want to delete this advertisement of yours?',
 
 );

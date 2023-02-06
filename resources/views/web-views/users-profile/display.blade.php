@@ -294,15 +294,11 @@
 
 @section('content')
     <div class="container mb-md-4">
+        <h3 class="headerTitle my-3 text-center" style="text-align:center">{{\App\CPU\translate('Here you can see all jobs for all majors and fields')}}</h3>
 
         @php($decimal_point_settings = \App\CPU\Helpers::get_business_settings('decimal_point_settings'))
         <!-- Page Title-->
-        <div class="d-flex justify-content-center align-items-center mb-3"
-            style="min-height: 70px;background:{{ $web_config['primary_color'] }}10;width:100%;">
 
-         
-
-        </div>
 
 
         <!-- Page Content-->
@@ -330,21 +326,22 @@
                             <div class="text-center">
                                 <div style="border-bottom: 1px solid #F3F5F9;padding:17px;border-top: 1px solid #F3F5F9;">
                                     <span class="widget-title"
-                                        style="font-weight: 700;">{{ \App\CPU\translate('filter') }}</span>
+                                        style="font-weight: 700;">{{ \App\CPU\translate('jobs_filiter') }}</span>
                                 </div>
                                 <form action="{{ route('fillterAdvertisWebSite') }}" method="get" role="search" autocomplete="off">
                                     @csrf
                                     <div class="input-group-overlay input-group-sm"
-                                        style="width: 100%;padding: 14px;padding-top: 30px; ">
+                                        style="width: 100%;padding: 14px;padding-top: 30px;">
 
 
                                         <select dir="{{Session::get('direction') === "rtl" ? 'rtl' : 'ltr'}}" name="career_sector" class="js-example-basic-single js-states js-example-responsive form-control color-var-select"
-                                                required>
+                                           style="border: inset;border-color: rgb(100, 72, 202);border-width: 2px;"     required>
                                                 <option value="{{ $type ??  \App\CPU\translate('name_carrer_sector')}} " disabled selected>
                                                     {{ $type ?? \App\CPU\translate('name_carrer_sector') }}
                                                 </option>
                                                 @foreach ($CareerSector as $CareerSectors)
-                                                    <option value="{{ $CareerSectors->id }}">{{ $CareerSectors->name }}</option>
+                                                    <option @if (old('career_sector')== $CareerSectors->id)
+                                                   selected @endif value="{{ $CareerSectors->id }}">{{ $CareerSectors->name }}</option>
                                                 @endforeach
                                         </select>
 
@@ -354,12 +351,13 @@
 
 
                                             <select dir="{{Session::get('direction') === "rtl" ? 'rtl' : 'ltr'}}" class="form-control" name="job_title"
-                                                required>
+                                            style="border: inset;border-color: rgb(100, 72, 202);border-width: 2px;"      required>
                                                 <option value="{{\App\CPU\translate('name_joptitle')}}" disabled selected>
-                                                    {{\App\CPU\translate('name_joptitle')}}
+                                                       {{\App\CPU\translate('Select the job title')}}
                                                 </option>
                                                 {{-- @foreach ($JobTitle as $JobTitles)
-                                                    <option value="{{ $JobTitles->id }}">{{ $JobTitles->name }}</option>
+                                                    <option @if (old('job_title')== $JobTitles->id)
+                                                   selected @endif value="{{ $JobTitles->id }}">{{ $JobTitles->name }}</option>
                                                 @endforeach --}}
                                             </select>
                                     </div>
@@ -367,26 +365,28 @@
                                         style="width: 100%;padding: 14px;padding-top: 30px; ">
 
 
-                                            <select dir="{{Session::get('direction') === "rtl" ? 'rtl' : 'ltr'}}" class="form-control" name="state_advertis"
-                                                >
+                                            <select dir="{{Session::get('direction') === "rtl" ? 'rtl' : 'ltr'}}" class="form-control" name="state_advertis"   style="border: inset;border-color: rgb(243, 122, 188);border-width: 2px;" >
                                                 <option value="" disabled selected>
                                                     {{ $type ?? \App\CPU\translate('state') }}
                                                 </option>
                                                 @foreach ($stateAdvertis as $stateAdvertises)
-                                                    <option value="{{ $stateAdvertises->id }}">{{ $stateAdvertises->name }}</option>
+                                                    <option @if (old('state_advertis')== $stateAdvertises->id)
+                                                   selected @endif value="{{ $stateAdvertises->id }}">{{ $stateAdvertises->name }}</option>
                                                 @endforeach
                                             </select>
                                     </div>
                                     <div class="input-group-overlay input-group-sm"
                                         style="width: 100%;padding: 14px;padding-top: 30px; ">
 
-                                            <select dir="{{Session::get('direction') === "rtl" ? 'rtl' : 'ltr'}}" class="form-control" name="city_advertis"
+                                            <select dir="{{Session::get('direction') === "rtl" ? 'rtl' : 'ltr'}}" class="form-control" name="city_advertis" style="border: inset;border-color: rgb(243, 122, 188);border-width: 2px;"
                                                 >
-                                                <option value="" disabled selected>
-                                                    {{ $type ?? \App\CPU\translate('governorate') }}
+                                                <option value="{{ $type ?? \App\CPU\translate('governorate') }}" disabled selected>
+                                                    {{\App\CPU\translate('Select the governorate')}}
+
                                                 </option>
                                                 {{-- @foreach ($governorate as $governorates)
-                                                    <option value="{{ $governorates->id }}">{{ $governorates->name }}</option>
+                                                    <option @if (old('city_advertis')== $governorates->id)
+                                                   selected @endif value="{{ $governorates->id }}">{{ $governorates->name }}</option>
                                                 @endforeach --}}
                                             </select>
                                     </div>
@@ -431,7 +431,7 @@
                                     <form action="{{ route('fillterAdvertisWebSite') }}" method="get" role="search" autocomplete="off">
                                     @csrf
                                     <div class="input-group-overlay input-group-sm"
-                                        style="width: 100%;padding: 14px;padding-top: 30px; ">
+                                        style="width: 100%;padding: 14px;padding-top: 30px;" >
 
                                         <p class="mg-b-10"> ({{\App\CPU\translate('name_carrer_sector')}}) </p>
                                         <select dir="{{Session::get('direction') === "rtl" ? 'rtl' : 'ltr'}}" name="career_sector" class="js-example-basic-single js-states js-example-responsive form-control color-var-select"
@@ -530,21 +530,27 @@
                             </button>
 
                            <div class="container pb-4 mb-1 mb-md-3 mt-2">
-                                <div class="col-md-15">
-                                    <form action="{{ route('search-jop') }}" style="background-color: #818181">
+                                <div class="col-md-15"><br>
+                                    <form action="{{ route('search-jop') }}" style="background-color: #ffffff">
                                         @csrf
                                         <div class="input-group mb-8">
-                                            <input type="text" class="form-control"
-                                                placeholder="{{ \App\CPU\translate('advertisment_name1') }}"
-                                                name="name" required>
+                                            <input type="text" class="form-control" placeholder="{{ \App\CPU\translate('advertisment_name1') }}" value="{{ old('name') }}" name="name" required>
                                             <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary"
+                                                <button class="btn btn-outline-primary"
                                                     type="submit">{{ \App\CPU\translate('Search') }}</button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
+
                             </div>
+                            <div class="col-sm-1 col-md-2">
+                                            <a href="{{ route('disblayAdvertisement') }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 50px">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                              </svg></a>
+
+                                            {{-- <a class="btn btn-primary" href="{{ route('admin.desblayAdvertisement') }}">  {{\App\CPU\translate('Reload data')}}</a> --}}
+                                        </div>
                         </div>
 
 
@@ -580,17 +586,16 @@
                                         <div class="advertis-view-body">
 
                                             <div class="text-dark">
-                                                <h1 class="font-weight-bold small">{{ Str::limit($shop->name, 14) }}</h1>
-                                                <p class="advertis-view-body-p">{{ $shop->CareerSector->name }} |
-                                                    {{ $shop->JobTitle->name }} | {{ $shop->advertiseType->name }}</p>
-                                                <p class=""> {{ \App\CPU\translate('Vacancies_in') }}
-                                                    {{ $shop->StateAdvertis->name }} {{ \App\CPU\translate('in') }}
-                                                    {{ $shop->CityAdvertis->name }}</p>
+                                                <h1 class="font-weight-bold small"> {{ \App\CPU\translate('required_') }} {{ Str::limit($shop->name, 20) }}  {{ \App\CPU\translate('to work_for') }}  {{ Str::limit($shop->advertiseType->name, 20) }}</h1>
+                                                <p class=""> {{ $shop->StateAdvertis->name }} , {{ $shop->CityAdvertis->name }} , {{ $shop->Governorate->name }} </p>
+                                                <p class="advertis-view-body-p" style="color: rebeccapurple">
+                                     {{ $shop->CareerSector->name }}|{{ $shop->JobTitle->name }}|{{ $shop->experience->experiences_level }}|{{ $shop->educationDegree->name }} </p>
+
                                             </div>
                                             <div class="col-md-8" style="top: 10%">
                                                 <div class="advertis-view-body">
                                                     <a href="{{ route('desblayAdvertisement', $shop->id) }}"
-                                                        class="btn btn-primary btn-sm"
+                                                        class="btn btn-primary"
                                                         style="margin-top:0px;padding-top:5px;padding-bottom:10px;padding-left:10px;padding-right:10px;bottom:40;">{{ \App\CPU\translate('show_advertism_detail') }}</a>
                                                 </div>
                                                 <div class="advertis-view-body"
@@ -787,7 +792,7 @@
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
-                        $('select[name="city_advertis"]').empty().append('<option value="" disabled selected>{{ \App\CPU\translate('Select the governorate')}}</option>');
+                        $('select[name="city_advertis"]').empty().append('<option value="" disabled selected>{{ \App\CPU\translate('governorate')}}</option>');
                         $.each(data, function(key, value) {
                             $('select[name="city_advertis"]').append('<option value="' +
                                 key + '">' + value + '</option>');

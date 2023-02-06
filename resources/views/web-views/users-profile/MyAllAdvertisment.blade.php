@@ -298,30 +298,12 @@
 
 @section('content')
 <div class="container rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-        <h3 class="headerTitle my-3 text-center">{{\App\CPU\translate('Here you can view and manage the ads that you have added')}}</h3>
+        <h3 class="headerTitle my-3 text-center" style="text-align: center">{{\App\CPU\translate('Here you can view and manage the ads that you have added')}}</h3>
 
 @php($decimal_point_settings = \App\CPU\Helpers::get_business_settings('decimal_point_settings'))
     <!-- Page Title-->
-    <div class="d-flex justify-content-center align-items-center mb-3" style="min-height: 70px;background:{{$web_config['primary_color']}}10;width:100%;">
 
-            <div class="row text-capitalize">
-                {{-- <span style="font-weight: 600;font-size: 18px;">{{str_replace("_"," ",$data['data_from'])}} {{\App\CPU\translate('products')}} {{ isset($brand_name) ? '('.$brand_name.')' : ''}}</span> --}}
-            </div>
 
-    </div>
-    <div class="container rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-        <div class="row">
-            <div class="col-md-3">
-                <a class="openbtn-tab mt-5" onclick="openNav()">
-                    <div style="font-size: 20px; font-weight: 600; " class="for-tab-display mt-5">
-                        <i class="fa fa-filter"></i>
-                        {{\App\CPU\translate('filter')}}
-                    </div>
-                </a>
-            </div>
-
-        </div>
-    </div>
 
     <!-- Page Content-->
     <div class="container pb-5 mb-2 mb-md-4 rtl"
@@ -429,42 +411,46 @@
             <!-- Content  -->
             <section class="col-lg-9">
                 {{-- <div class="col-md-9"> --}}
-                    <div class="row mb-3" style="background: gray;margin:0px;border-radius:5px;">
+                    <div class="row mb-3" style="background: rgba(26, 29, 231, 0.068);margin:0px;border-radius:5px;">
                         <div class="col-md-6 d-flex  align-items-center">
                             {{-- if need data from also --}}
                             {{-- <h1 class="h3 text-dark mb-0 headerTitle text-uppercase">{{\App\CPU\translate('product_by')}} {{$data['data_from']}} ({{ isset($brand_name) ? $brand_name : $data_from}})</h1> --}}
-                            <h1 class="{{Session::get('direction') === "rtl" ? 'mr-3' : 'ml-3'}}">
+                            <h1 class="{{ Session::get('direction') === 'rtl' ? 'mr-3' : 'ml-3' }}">
 
                                 {{-- <label id="price-filter-count"> {{$products->total()}} {{\App\CPU\translate('items found')}} </label> --}}
                             </h1>
                         </div>
                         <div class="col-md-6 m-2 m-md-0 d-flex  align-items-center ">
 
-                            <button class="openbtn text-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}" onclick="openNav()">
-                                <div >
+                            <button class="openbtn text-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }}"
+                                onclick="openNav()">
+                                <div>
                                     <i class="fa fa-filter"></i>
-                                    {{\App\CPU\translate('filter')}}
+                                    {{ \App\CPU\translate('filter') }}
                                 </div>
                             </button>
 
-
-                            <div class="row mt-3 mb-3 border-bottom">
-
-                                <div class="col-md-18" >
-                                    <form action="{{ route('search-jop') }}">
+                           <div class="container pb-4 mb-1 mb-md-3 mt-2">
+                                <div class="col-md-15"><br>
+                                    <form action="{{ route('search-jop') }}" style="background-color: #ffffff">
                                         @csrf
                                         <div class="input-group mb-8">
-                                            <input type="text" class="form-control"
-                                                placeholder="{{ \App\CPU\translate('advertisment_name1') }}"
-                                                name="name" required>
+                                            <input type="text" class="form-control" placeholder="{{ \App\CPU\translate('advertisment_name1') }}" value="{{ old('name') }}" name="name" required>
                                             <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary"
+                                                <button class="btn btn-outline-primary"
                                                     type="submit">{{ \App\CPU\translate('Search') }}</button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
+                            <div class="col-sm-1 col-md-2">
+                                            <a href="{{ route('disblayAdvertisement') }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 50px">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                              </svg></a>
+
+                                            {{-- <a class="btn btn-primary" href="{{ route('admin.desblayAdvertisement') }}">  {{\App\CPU\translate('Reload data')}}</a> --}}
+                                        </div>
                         </div>
 
 
@@ -481,15 +467,21 @@
                                 <p class="mb-0 float-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}">{{ $shop->created_at }}</p>
                                 <div class="direction_advertis">
 
-                                    <img style="vertical-align: middle; border-radius: 3%;" class="advertis-view-img"
-                                         onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                         src=""
-                                         alt="{{$shop->name}}">
+                                    @if ($shop->image)
+                                        <img style="vertical-align: middle; border-radius: 3%;" class="advertis-view-img"
+                                            onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                            src="{{asset('public/uploads/'.$shop->image[0]) }}" alt="{{ $shop->name }}">
+                                        @else
+                                        <img style="vertical-align: middle; border-radius: 3%;" class="advertis-view-img"
+                                            onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                            src="" alt="{{ $shop->name }}">
+                                        @endif
                                     <div class="advertis-view-body">
                                         <div class="text-dark">
                                             <h1 class="font-weight-bold small">{{Str::limit($shop->name, 14)}}</h1>
-                                            <p class="advertis-view-body-p">{{$shop->CareerSector->name}} | {{ $shop->JobTitle->name }} |  {{$shop->advertiseType->name}}</p>
-                                            <p class=""> {{\App\CPU\translate('Vacancies_in')}} {{ $shop->StateAdvertis->name  }} {{\App\CPU\translate('in')}} {{ $shop->CityAdvertis->name }}</p></div>
+                                            <p class=""> {{ $shop->StateAdvertis->name }} , {{ $shop->CityAdvertis->name }} , {{ $shop->Governorate->name }} </p>
+                                                     <p class="advertis-view-body-p" style="color: rebeccapurple">
+                                     {{ $shop->CareerSector->name }}|{{ $shop->JobTitle->name }}|{{ $shop->experience->experiences_level }}|{{ $shop->educationDegree->name }} </p></div>
                                         <div class="advertis-view-body-a">
                                             @if ($shop->status == 'Active')
 
@@ -502,6 +494,11 @@
                                         <div class="col-md-8" style="top: 10%" >
                                          <div class="advertis-view-body">
                                         <a href="{{route('desblayAdvertisement',$shop->id)}}" class="btn btn-primary btn-sm" style="margin-top:0px;padding-top:5px;padding-bottom:10px;padding-left:10px;padding-right:10px;bottom:40;">{{\App\CPU\translate('show_advertism_detail')}}</a>
+                                        <a class="btn btn-danger btn-sm delete" style="cursor: pointer;"
+                                                    title="{{ \App\CPU\translate('Delete')}}"
+                                                   id="{{$shop['id']}}">
+                                                    <i class="tio-add-to-trash"></i>
+                                                </a>
                                     </div>
                                      </div>
                                         </div>
@@ -608,4 +605,36 @@
         });
     });
 </script>
+<script>
+        $(document).on('click', '.delete', function () {
+            var id = $(this).attr("id");
+            Swal.fire({
+                title: '{{\App\CPU\translate('Are_you_sure')}}?',
+                text: "{{\App\CPU\translate('Do you want to delete this ad of yours?')}}",
+                showCancelButton: true,
+                type: 'warning',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '{{\App\CPU\translate('Yes')}}, {{\App\CPU\translate('delete_it')}}!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "{{route('deleteAdvertis')}}",
+                        method: 'delete',
+                        data: {id: id},
+                        success: function () {
+                        // toastr.success('{{\App\CPU\translate('Category_deleted_Successfully.')}}');
+                            location.reload();
+                        }
+                    });
+                }
+            })
+        });
+    </script>
 @endpush
