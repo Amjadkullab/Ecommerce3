@@ -464,67 +464,7 @@
                 </div>
 
             </div>
-            {{-- <div class="col-xl-9 col-md-8 mt-2">
-                <div class="latest-product-margin">
-                    <div class="d-flex justify-content-between">
-                        <div class="text-center">
-                            <span class="for-feature-title __text-22px font-bold text-center">{{ \App\CPU\translate('latest advertisment')}}</span>
-                        </div>
-                        <div class="mr-1">
-                            <a class="text-capitalize view-all-text"
-                               href="{{route('products',['data_from'=>'latest'])}}">
-                                {{ \App\CPU\translate('view_all')}}
-                                <i class="czi-arrow-{{Session::get('direction') === "rtl" ? 'left mr-1 ml-n1 mt-1 float-left' : 'right ml-1 mr-n1'}}"></i>
-                            </a>
-                        </div>
-                    </div>
 
-                    <div class="row mt-0 g-3">
-                        @foreach($latest_adverstisment as $adverstisment)
-                            <div class="col-xl-3 col-sm-4 col-md-6 col-lg-4 col-6">
-                                <div class="col-lg-12 px-2 pb-4" >
-                                    <div class="card-body shadow" style="width: 100%">
-                                        <div class="direction_advertis">
-                                            <p class="mb-0 float-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}">{{ $adverstisment->created_at }}</p></div>
-                                            <img style="vertical-align: middle; border-radius: 3%;" class="advertis-view-img"
-                                                 onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                                 src=""
-                                                 alt="{{$adverstisment->name}}">
-
-                                            <div class="advertis-view-body">
-
-                                                <div class="text-dark">
-                                                    <h1 class="font-weight-bold small">{{Str::limit($adverstisment->name, 14)}}</h1>
-                                                    <p class="advertis-view-body-p">{{$adverstisment->CareerSector->name}} | {{ $adverstisment->JobTitle->name }} |  {{$adverstisment->advertiseType->name}}</p>
-                                                    <p class=""> وظائف شاغرة في دولة {{ $adverstisment->StateAdvertis->name  }} في {{ $adverstisment->CityAdvertis->name }}</p>
-                                                </div>
-                                                <div class="col-md-9" >
-
-
-                                                <!-- <div class="advertis-view-body-a">
-                                                    <a href="" class="btn btn-primary btn-sm" style="margin-top:0px;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">عرض تفاصيل الاعلان</a>
-
-                                                        </div> -->
-
-                                                 <div class=""><br>
-                                                <a href="{{ route('desblayAdvertisement',$adverstisment->id) }}" class="btn btn-primary btn-sm" style="margin-top:0px;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;">عرض تفاصيل الاعلان  </a>
-                                            </div>
-                                                    <label class="switch">
-                                                        <input type="checkbox" class="status"
-                                                            {{--onclick="featured_status('{{$shop['id']}}')" {{$shop->status == 'Active'?'checked':''}} --}}
-                                                            {{-- >
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div> --}}
             {{-- Latest products --}}
             <div class="col-xl-9 col-md-8 mt-2">
                 <div class="latest-product-margin">
@@ -647,7 +587,110 @@
                 </div>
             @endif
             <!-- top sellers -->
+            <div class="container rtl">
+                <div class="row g-4 pt-2 mt-0 mb-4 pb-2 __deal-of">
+            <div class="col-xl-9 col-md-8 mt-2">
+                <div class="latest-product-margin">
+                    <div class="d-flex justify-content-between">
+                        <div class="text-center">
+                            <span class="for-feature-title __text-22px font-bold text-center">{{ \App\CPU\translate('latest advertisment')}}</span>
+                        </div>
+                        <div class="mr-1">
+                            <a class="text-capitalize view-all-text"
+                               href="{{route('products',['data_from'=>'latest'])}}">
+                                {{ \App\CPU\translate('view_all')}}
+                                <i class="czi-arrow-{{Session::get('direction') === "rtl" ? 'left mr-1 ml-n1 mt-1 float-left' : 'right ml-1 mr-n1'}}"></i>
+                            </a>
+                        </div>
+                    </div>
 
+                    <div class="row mt-0 g-3">
+                        @foreach($latest_adverstisment as $adverstisment)
+                        <div class="col-xl-7 col-sm-6 col-md-6 col-lg-6 col-6">
+                            {{-- <div class="col-lg-10 px-1 pb-2"> --}}
+                            <div class="card-body shadow" style="width: 100%">
+                                <p
+                                    class="mb-0 float-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }}">
+                                    {{ $adverstisment->created_at }}</p>
+                            </div>
+                            <div class="direction_advertis">
+                                @if ($adverstisment->image)
+                                <img style="vertical-align: middle; border-radius: 3%;" class="advertis-view-img"
+                                    onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                    src="{{asset('public/uploads/'.$adverstisment->image[0]) }}" alt="{{ $adverstisment->name }}">
+                                @else
+                                <img style="vertical-align: middle; border-radius: 3%;" class="advertis-view-img"
+                                    onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                    src="" alt="{{ $adverstisment->name }}">
+                                @endif
+
+
+                                <div class="advertis-view-body">
+
+                                    <div class="text-dark">
+                                        <h1 class="font-weight-bold small"> {{ \App\CPU\translate('required_') }} {{ Str::limit($adverstisment->name, 20) }}  {{ \App\CPU\translate('to work_for') }}  {{ Str::limit($adverstisment->advertiseType->name, 20) }}</h1>
+                                        <p class=""> {{ $adverstisment->StateAdvertis->name }} , {{ $adverstisment->CityAdvertis->name }} , {{ $adverstisment->Governorate->name }} </p>
+                                        <p class="advertis-view-body-p" style="color: rebeccapurple">
+                             {{ $adverstisment->CareerSector->name }}|{{ $adverstisment->JobTitle->name }}|{{ $adverstisment->experience->experiences_level }}|{{ $adverstisment->educationDegree->name }} </p>
+
+                                    </div>
+                                    <div class="col-md-8" style="top: 10%">
+                                        <div class="advertis-view-body">
+                                            <a href="{{ route('desblayAdvertisement', $adverstisment->id) }}"
+                                                class="btn btn-primary"
+                                                style="margin-top:0px;padding-top:5px;padding-bottom:10px;padding-left:10px;padding-right:10px;bottom:40;">{{ \App\CPU\translate('show_advertism_detail') }}</a>
+                                        </div>
+                                        <div class="advertis-view-body"
+                                            style="text-align:center;text-align: left; position: absolute;left:0;top: 15px;right:80%;">
+                                            <div
+                                                class="topbar-text dropdown d-md-none {{ Session::get('direction') === 'rtl' ? 'mr-auto' : 'ml-auto' }}">
+                                                <a class="topbar-link"
+                                                    href="tel: {{ $web_config['phone']->value }}">
+                                                    <i class="fa fa-phone"></i> {{ $web_config['phone']->value }}
+                                                </a>
+                                            </div>
+                                            <div
+                                                class="d-none d-md-block {{ Session::get('direction') === 'rtl' ? 'mr-2' : 'mr-2' }} text-nowrap">
+                                                <a class="topbar-link d-none d-md-inline-block"
+                                                    href="tel:{{ $web_config['phone']->value }}">
+                                                    <i class="fa fa-phone"></i> {{ $web_config['phone']->value }}
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-md-9"
+                                            style="margin-right: 10px;position: relative;text-align:center;text-align: left; position: absolute;right:0%;top: 15px;">
+                                            <span
+                                                style="font-weight: 400;"class=" font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1' }} text-capitalize">
+                                            </span>
+
+                                            <button type="button" onclick="addWishlistAdvertis('{{ $adverstisment['id'] }}')"
+                                                class="btn for-hover-bg"
+                                                style="color:{{ $web_config['secondary_color'] }};font-size: 18px;">
+                                                <i class="fa fa-heart-o " aria-hidden="true"></i>
+                                            </button><br>
+                                            <div
+                                                class="{{ Session::get('direction') === 'rtl' ? 'pr-2' : 'pl-2' }}">
+                                                <br>
+                                                <div class="d-flex mb-3 mb-md-0 align-items-center">
+                                                    <h5 class="font-name"></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
         @if ($business_mode == 'multi')
             @if(count($top_sellers) > 0)
                 <div class="col-md-6 mt-2 mt-md-0 seller-card" >
