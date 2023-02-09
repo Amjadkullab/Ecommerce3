@@ -49,7 +49,7 @@
                             <div class="row">
                                 <div class="col-12 col-md-5 rest-part"><br>
                                     <label for="">{{ \App\CPU\translate('name_carrer_sector')}} : </label> <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
-                                    <select name="career_sector_id" id="career_sector_id" class="js-example-placeholder-single js-example-basic-single js-states js-example-responsive form-control color-var-select" autofocus>
+                                    <select name="career_sector_id" id="career_sector_id" class="js-example-placeholder-single js-example-basic-single js-states js-example-responsive form-control color-var-select" autofocus required>
                                         <option value="" disabled selected> {{ \App\CPU\translate('Select the career sector')}}</option>
                                         @foreach ($CareerSector as $CareerSectors)
                                             <option value="{{ $CareerSectors->id }}">{{ $CareerSectors->name }}</option>
@@ -60,7 +60,7 @@
 
                                 <div class="col-12 col-md-5 rest-part"><br>
                                     <label for="">{{ \App\CPU\translate('name_joptitle')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
-                                    <select name="job_title_id" id="job_title_id" class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
+                                    <select name="job_title_id" id="job_title_id" required class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
                                         <option value="" disabled selected>{{ \App\CPU\translate('Select the job title')}}</option>
                                         {{-- @foreach ($jobTitle as $jobTitles)
                                             <option value="{{ $jobTitles->id }}">{{ $jobTitles->name }}</option>
@@ -70,7 +70,7 @@
 
                                 <div class="col-12 col-md-5 rest-part"><br>
                                     <label for="">{{ \App\CPU\translate('advertise_type')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
-                                    <select name="advertise_type_id" id="advertise_type_id" class="js-example-basic-single js-states js-example-responsive form-control color-var-select" required>
+                                    <select name="advertise_type_id" required id="advertise_type_id" class="js-example-basic-single js-states js-example-responsive form-control color-var-select" required>
                                         <option value="" disabled selected>{{ \App\CPU\translate('Select the advertise type')}} </option>
                                         @foreach ($AdvertiserType as $AdvertiserTypes)
                                             <option value="{{ $AdvertiserTypes->id }}">{{ $AdvertiserTypes->name }}</option>
@@ -80,7 +80,7 @@
 
                                 <div class="col-12 col-md-5 rest-part"><br>
                                     <label for="">{{\App\CPU\translate('type_contract')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
-                                    <select name="type_contract_id" id="type_contract_id" class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
+                                    <select name="type_contract_id" id="type_contract_id" required class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
                                         <option value="" disabled selected>  {{ \App\CPU\translate('Select the type contract')}}</option>
                                         @foreach ($TypeOfContract as $TypeOfContracts)
                                             <option value="{{ $TypeOfContracts->id }}">{{ $TypeOfContracts->name }}</option>
@@ -90,7 +90,7 @@
 
                                 <div class="col-12 col-md-5 rest-part"><br>
                                     <label for="">{{ \App\CPU\translate('work_day')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
-                                    <select name="work_day_id" id="work_day_id" class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
+                                    <select name="work_day_id" id="work_day_id" required class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
                                         <option value="" disabled selected>   {{ \App\CPU\translate('Select the work day')}}</option>
                                         @foreach ($numberWorkingDay as $numberWorkingDays)
                                             <option value="{{ $numberWorkingDays->id }}">{{ $numberWorkingDays->workDays }}</option>
@@ -100,7 +100,7 @@
 
                                 <div class="col-12 col-md-5 rest-part"><br>
                                     <label for="">{{ \App\CPU\translate('work_hour')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
-                                    <select name="type_work_hour_id" id="type_work_hour_id" class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
+                                    <select name="type_work_hour_id" id="type_work_hour_id" required class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
                                         <option value="" disabled selected>   {{ \App\CPU\translate('Select the work hour')}}</option>
                                         @foreach ($workHour as $workHours)
                                             <option value="{{ $workHours->id }}">{{ $workHours->name }}</option>
@@ -110,8 +110,12 @@
                                 <div class="col-12 col-md-5 rest-part"><br>
                                     <label for="">{{ \App\CPU\translate('expected_salary') }} : </label>  <small style="color: red"> * {{\App\CPU\translate('opt')}}  </small>
                                     <div class="input-group">
-                                        <select name="salary_id" id="salary_id"
-                                            class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
+
+                                        <input type="number" name="expected_salary" id="expected_salary" style="width: 50%" class="form-control"
+                                            placeholder= {{ \App\CPU\translate('Enter_the_expected_salary') }}>
+
+                                            <select name="salary_id" id="salary_id"
+                                            class="form-control">
                                             <option value="" disabled selected>
                                                 {{ \App\CPU\translate('Select the salary type') }} </option>
                                             @foreach ($expectedSalary as $expectedSalaries)
@@ -122,8 +126,6 @@
                                                 >{{ $expectedSalaries->type }}</option>
                                             @endforeach
                                         </select>
-                                        <input type="number" name="expected_salary" id="expected_salary" class="form-control"
-                                            placeholder= {{ \App\CPU\translate('Enter_the_expected_salary') }}>
                                     </div>
                                 </div>
                                 {{-- <div class="col-12 col-md-5 rest-part"><br>
@@ -142,11 +144,11 @@
                                 <div class="col-12 col-md-5 form-group rest-part"><br>
                                     <label for="">{{ \App\CPU\translate('Work_from_home')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
                                     <div class="form-check">
-                                        <input type="radio" name="work_from_home" value="Yes">
+                                        <input type="radio" name="work_from_home" required value="Yes">
                                         <label for="" class="form-check-label">{{ \App\CPU\translate('Yes')}}</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="radio" name="work_from_home" value="No">
+                                        <input type="radio" name="work_from_home" required value="No">
                                         <label for="" class="form-check-label">{{ \App\CPU\translate('No')}}</label>
 
                                     </div>
@@ -157,7 +159,7 @@
 
                                     <select
                                             class="js-example-basic-multiple js-states js-example-responsive form-control color-var-select"
-                                            name="ExtraBenefit[]" multiple="multiple">
+                                            name="ExtraBenefit[]" multiple="multiple" required>
                                             @foreach ($ExtraBenefit as $ExtraBenefits)
                                                 <option value="{{ $ExtraBenefits->id }}">{{ $ExtraBenefits->name }}</option>
                                             @endforeach
@@ -167,7 +169,7 @@
 
                                 <div class="col-12 col-md-5 rest-part"><br>
                                     <label for="">{{ \App\CPU\translate('education_degree')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
-                                    <select name="education_degree_id" id="education_degree_id" class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
+                                    <select name="education_degree_id" id="education_degree_id" required class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
                                         <option value="" disabled selected>  {{ \App\CPU\translate('Select the education degree')}}</option>
                                         @foreach ($educationDegree as $educationDegrees)
                                             <option value="{{ $educationDegrees->id }}">{{ $educationDegrees->name }}</option>
@@ -178,7 +180,7 @@
                                 <div class="col-12 col-md-5 rest-part"><br>
                                     <label for="">{{ \App\CPU\translate('experience')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
 
-                                    <select name="experience_id" id="experience_id" class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
+                                    <select name="experience_id" id="experience_id" required class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
                                         <option value="" disabled selected>  {{ \App\CPU\translate('Select the experience level')}} </option>
                                         @foreach ($ExperienceLevel as $ExperienceLeveles)
                                             <option value="{{ $ExperienceLeveles->id }}">{{ $ExperienceLeveles->experiences_level }}</option>
@@ -192,11 +194,11 @@
                                     <label for="">{{ \App\CPU\translate('The_job_requires_a_vehicle')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
 
                                     <div class="form-check">
-                                        <input type="radio" name="job_requires_vehicle" value="Yes">
+                                        <input type="radio" name="job_requires_vehicle" required value="Yes">
                                         <label for="" class="form-check-label">{{ \App\CPU\translate('Yes')}}</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="radio" name="job_requires_vehicle" value="No">
+                                        <input type="radio" name="job_requires_vehicle" required value="No">
                                         <label for="" class="form-check-label">{{ \App\CPU\translate('No')}}</label>
 
                                     </div>
@@ -208,11 +210,11 @@
                                     <label for="">{{ \App\CPU\translate('Driving_license_required')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
 
                                     <div class="form-check">
-                                        <input type="radio" name="Require_driver_license" value="Yes">
+                                        <input type="radio" name="Require_driver_license" required value="Yes">
                                         <label for="" class="form-check-label">{{ \App\CPU\translate('Yes')}}</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="radio" name="Require_driver_license" value="No">
+                                        <input type="radio" name="Require_driver_license" required value="No">
                                         <label for="" class="form-check-label">{{ \App\CPU\translate('No')}}</label>
 
                                     </div>
@@ -232,7 +234,7 @@
                                 <div class="col-12 col-md-5 rest-part"><br>
                                     <label for="">{{ \App\CPU\translate('sex')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
 
-                                    <select name="gender" id="gender" class="form-control">
+                                    <select name="gender" id="gender" required class="form-control">
                                         <option value="" disabled selected>{{ \App\CPU\translate('Select the sex type')}}  </option>
                                         <option value="male">{{ \App\CPU\translate('male_')}}</option>
                                         <option value="female">{{ \App\CPU\translate('female')}}</option>
@@ -254,7 +256,7 @@
                                 <div class="col-12 col-md-5 rest-part"><br>
                                     <label for="">{{ \App\CPU\translate('nationality')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
 
-                                    <select name="nationality_id" id="nationality_id" class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
+                                    <select name="nationality_id" required id="nationality_id" class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
                                             <option value="" disabled selected>{{ \App\CPU\translate('Select the nationality')}} </option>
 
                                              @foreach ($Nationality as $Nationalities)
@@ -279,11 +281,11 @@
                                 <div class="col-12 form-group {{ $lang != $default_lang ? 'd-none' : '' }} lang_form"
                                 id="{{ $lang }}-form"> <br>
                                         <label for="">{{ \App\CPU\translate('advertisment_name1')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small> <br>
-                                        <input type="text" class="form-control" name="name[]" id="name">
+                                        <input type="text" required class="form-control" name="name[]" id="name">
 <br>
 
                                         <label for="">{{ \App\CPU\translate('advertisment_description1')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small><br>
-                                        <textarea name="description[]" id="description" class="editor textarea"></textarea> <br>
+                                        <textarea name="description[]" required id="description" class="editor textarea"></textarea> <br>
 
 
                                 </div>
@@ -296,7 +298,7 @@
                                 <div class="col-12 col-md-5 rest-part"><br>
                                     <label for="">{{ \App\CPU\translate('state')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
 
-                                    <select name="state_advertis_id" id="state_advertis_id" class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
+                                    <select name="state_advertis_id" required id="state_advertis_id" class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
                                         <option value="" disabled selected>{{ \App\CPU\translate('Select the state')}} </option>
                                         @foreach ($state_advertis as $state_advertises)
                                             <option value="{{ $state_advertises->id }}">{{ $state_advertises->name }}</option>
@@ -307,7 +309,7 @@
                                 <div class="col-12 col-md-5 rest-part"><br>
                                     <label for="">{{ \App\CPU\translate('governorate')}} : </label>  <small style="color: red"> * {{\App\CPU\translate('req')}}  </small>
 
-                                    <select name="city_advertis_id" id="city_advertis_id" class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
+                                    <select name="city_advertis_id" id="city_advertis_id" required class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
                                         <option value="" disabled selected>  {{ \App\CPU\translate('Select the governorate')}}</option>
 
                                         {{-- @foreach ($city_advertis as $city_advertises)

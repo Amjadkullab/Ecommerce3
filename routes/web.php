@@ -111,7 +111,8 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
    Route::post('delete-`wishlist`', 'UserProfileController@deleteWishlistAdvertis')->name('delete-wishlistAdvertis');
    Route::delete('deleteAdvertis', 'UserProfileController@deleteAdvertis')->name('deleteAdvertis');
 
-    Route::get('search-jop', 'UserProfileController@search_jop')->name('search-jop');
+    Route::get('search-Adversment', 'UserProfileController@search_Advert')->name('search-jop');
+    Route::get('search-MyAdversment', 'UserProfileController@search_MyAdvert')->name('search-Myjop');
     Route::get('fillterAllAdvertis', 'UserProfileController@fillterAdvertisement')->name('fillterAdvertisWebSite');
     Route::get('fillterMyAdvertis', 'UserProfileController@fillterMyAdvertisement')->name('fillterMyAdvertisement');
     // Route::put('statusAdvertisement', 'UserProfileController@statusAdvertisement')->name('statusAdvertisement');

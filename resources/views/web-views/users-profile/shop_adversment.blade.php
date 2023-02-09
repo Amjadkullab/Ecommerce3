@@ -185,7 +185,7 @@
     </div>
     <div class="container mb-md-4 {{Session::get('direction') === "rtl" ? 'rtl' : ''}} __inline-65">
         <div class="col-md-8" >
-            <h4 class="mt-2 text-start"><p>{{ $shop->created_at }}</p></h4>
+            <h4 class="mt-2 text-start"><p>{{ $shop->created_at->diffForHumans() }}</p></h4>
         </div>
 
         </div>

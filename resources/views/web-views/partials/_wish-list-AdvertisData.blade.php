@@ -14,7 +14,7 @@
                                     onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" alt="wishlist" >
                                 </a>
                             </div>
-                            <div class="wishlist_product_desc align-self-center col-sm-8 col-md-8 col-xl-10 col-lg-9 py-3 px-sm-4">
+                            <div class="wishlist_product_desc align-self-center col-sm-8 col-md-8 col-xl-10 col-lg-9 py-3 px-sm-4" >
                                 <div class="font-name">
                                     <a href="{{route('desblayAdvertisement',$advertis->id)}}" style="text-align: center;width:100">{{$advertis['name']}}</a>
                                 </div> <br>
@@ -37,12 +37,12 @@
                                 <div class="col-md-8" style="top: 10%">
                                     <div class="advertis-view-body">
                                         <a href="{{ route('desblayAdvertisement', $advertis->id) }}"
-                                            class="btn btn-primary btn-sm"
+                                            class="btn btn-info btn-sm"
                                             style="margin-top:0px;padding-top:5px;padding-bottom:10px;padding-left:10px;padding-right:10px;bottom:40;">{{ \App\CPU\translate('show_advertism_detail') }}</a>
                                     </div>
                                 </div>
                             </div>
-                            <a href="javascript:" class="wishlist_product_icon">
+                            <a href="javascript:" class="position-box">
                                 <i class="czi-close-circle" onclick="removeWishlist('{{$advertis['id']}}')"
                                     style="color: red"></i>
                             </a>

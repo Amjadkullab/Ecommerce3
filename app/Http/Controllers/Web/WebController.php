@@ -89,7 +89,7 @@ class WebController extends Controller
         //end
 
         $latest_products = Product::with(['reviews'])->active()->orderBy('id', 'desc')->take(8)->get();
-        $latest_adverstisment = Advertis::orderBy('id', 'desc')->where('status', 'Active')->take(8)->get();
+        $latest_adverstisment = Advertis::orderBy('id', 'desc')->where('status', 'Active')->get();
         $categories = Category::where('position', 0)->priority()->take(11)->get();
         $brands = Brand::active()->take(15)->get();
         //best sell product

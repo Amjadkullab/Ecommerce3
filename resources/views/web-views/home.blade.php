@@ -604,84 +604,100 @@
                         </div>
                     </div>
 
-                    <div class="row mt-0 g-3">
-                        @foreach($latest_adverstisment as $adverstisment)
-                        <div class="col-xl-7 col-sm-6 col-md-6 col-lg-6 col-6">
-                            {{-- <div class="col-lg-10 px-1 pb-2"> --}}
-                            <div class="card-body shadow" style="width: 100%">
-                                <p
-                                    class="mb-0 float-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }}">
-                                    {{ $adverstisment->created_at }}</p>
-                            </div>
-                            <div class="direction_advertis">
-                                @if ($adverstisment->image)
-                                <img style="vertical-align: middle; border-radius: 3%;" class="advertis-view-img"
-                                    onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
-                                    src="{{asset('public/uploads/'.$adverstisment->image[0]) }}" alt="{{ $adverstisment->name }}">
-                                @else
-                                <img style="vertical-align: middle; border-radius: 3%;" class="advertis-view-img"
-                                    onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
-                                    src="" alt="{{ $adverstisment->name }}">
-                                @endif
+                    <div class="row mt-0 g-3 ">
+                        @foreach($latest_adverstisment as $shop)
+                        <div class="col-xl-3 col-sm-4 col-md-6 col-lg-4 col-12">
+                            <div class="card-body shadow relative-box" style="width: 100%">
+                                <div class="direction_advertis">
+                                    @if ($shop->image)
+                                        <img style="vertical-align: middle; border-radius: 3%;"
+                                            class="advertis-view-img"
+                                            onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                            src="{{ asset('public/uploads/' . $shop->image[0]) }}"
+                                            alt="{{ $shop->name }}">
+                                    @else
+                                        <img style="vertical-align: middle; border-radius: 3%;"
+                                            class="advertis-view-img"
+                                            onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                            src="" alt="{{ $shop->name }}">
+                                    @endif
 
 
-                                <div class="advertis-view-body">
+                                    <div class="advertis-view-body">
 
-                                    <div class="text-dark">
-                                        <h1 class="font-weight-bold small"> {{ \App\CPU\translate('required_') }} {{ Str::limit($adverstisment->name, 20) }}  {{ \App\CPU\translate('to work_for') }}  {{ Str::limit($adverstisment->advertiseType->name, 20) }}</h1>
-                                        <p class=""> {{ $adverstisment->StateAdvertis->name }} , {{ $adverstisment->CityAdvertis->name }} , {{ $adverstisment->Governorate->name }} </p>
-                                        <p class="advertis-view-body-p" style="color: rebeccapurple">
-                             {{ $adverstisment->CareerSector->name }}|{{ $adverstisment->JobTitle->name }}|{{ $adverstisment->experience->experiences_level }}|{{ $adverstisment->educationDegree->name }} </p>
-
-                                    </div>
-                                    <div class="col-md-8" style="top: 10%">
-                                        <div class="advertis-view-body">
-                                            <a href="{{ route('desblayAdvertisement', $adverstisment->id) }}"
-                                                class="btn btn-primary"
-                                                style="margin-top:0px;padding-top:5px;padding-bottom:10px;padding-left:10px;padding-right:10px;bottom:40;">{{ \App\CPU\translate('show_advertism_detail') }}</a>
-                                        </div>
-                                        <div class="advertis-view-body"
-                                            style="text-align:center;text-align: left; position: absolute;left:0;top: 15px;right:80%;">
-                                            <div
-                                                class="topbar-text dropdown d-md-none {{ Session::get('direction') === 'rtl' ? 'mr-auto' : 'ml-auto' }}">
-                                                <a class="topbar-link"
-                                                    href="tel: {{ $web_config['phone']->value }}">
-                                                    <i class="fa fa-phone"></i> {{ $web_config['phone']->value }}
-                                                </a>
-                                            </div>
-                                            <div
-                                                class="d-none d-md-block {{ Session::get('direction') === 'rtl' ? 'mr-2' : 'mr-2' }} text-nowrap">
-                                                <a class="topbar-link d-none d-md-inline-block"
-                                                    href="tel:{{ $web_config['phone']->value }}">
-                                                    <i class="fa fa-phone"></i> {{ $web_config['phone']->value }}
-                                                </a>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="col-md-9"
-                                            style="margin-right: 10px;position: relative;text-align:center;text-align: left; position: absolute;right:0%;top: 15px;">
-                                            <span
-                                                style="font-weight: 400;"class=" font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1' }} text-capitalize">
-                                            </span>
-
-                                            <button type="button" onclick="addWishlistAdvertis('{{ $adverstisment['id'] }}')"
-                                                class="btn for-hover-bg"
-                                                style="color:{{ $web_config['secondary_color'] }};font-size: 18px;">
-                                                <i class="fa fa-heart-o " aria-hidden="true"></i>
-                                            </button><br>
-                                            <div
-                                                class="{{ Session::get('direction') === 'rtl' ? 'pr-2' : 'pl-2' }}">
-                                                <br>
-                                                <div class="d-flex mb-3 mb-md-0 align-items-center">
-                                                    <h5 class="font-name"></h5>
+                                        <div class="text-dark">
+                                            <h1 class="font-weight-bold small">
+                                                {{ \App\CPU\translate('required_') }}
+                                                {{ Str::limit($shop->name, 20) }}
+                                                {{ \App\CPU\translate('to work_for') }}
+                                                {{ Str::limit($shop->advertiseType->name, 20) }}</h1>
+                                            <p class=""> {{ $shop->StateAdvertis->name }} ,
+                                                {{ $shop->CityAdvertis->name }} , {{ $shop->Governorate->name }}
+                                            </p>
+                                            <p class="advertis-view-body-p" style="color: rebeccapurple">
+                                                {{ $shop->CareerSector->name }}|{{ $shop->JobTitle->name }}|{{ $shop->experience->experiences_level }}|{{ $shop->educationDegree->name }}
+                                            </p>
+                                            <div class="advertis-view-body d-flex align-items-center space-between-2">
+                                                <a href="{{ route('desblayAdvertisement', $shop->id) }}"
+                                                    class="btn btn-info"
+                                                    style="margin-top:0px;padding-top:5px;padding-bottom:10px;padding-left:10px;padding-right:10px;bottom:40; margin-right: 5px">{{ \App\CPU\translate('show_advertism_detail') }}</a>
+                                                    <div class=""
+                                                >
+                                                <div
+                                                    class="topbar-text dropdown d-md-none {{ Session::get('direction') === 'rtl' ? 'mr-auto' : 'ml-auto' }}">
+                                                    <a class="topbar-link"
+                                                        href="tel: {{ $web_config['phone']->value }}">
+                                                        <i class="fa fa-phone"></i>
+                                                        {{ $web_config['phone']->value }}
+                                                    </a>
+                                                </div>
+                                                <div
+                                                    class="d-none d-md-block {{ Session::get('direction') === 'rtl' ? 'mr-2' : 'mr-2' }} text-nowrap">
+                                                    <a class="topbar-link d-none d-md-inline-block"
+                                                        href="tel:{{ $web_config['phone']->value }}">
+                                                        <i class="fa fa-phone"></i>
+                                                        {{ $web_config['phone']->value }}
+                                                    </a>
                                                 </div>
                                             </div>
-                                        </div>
+                                            </div>
 
+
+                                        </div>
+                                        <div class="col-md-8" style="top: 10%">
+
+
+
+
+
+                                            <div class="col-md-9"
+                                                style="margin-right: 10px;position: relative;text-align:center;text-align: left; position: absolute;right:0%;top: 15px;">
+                                                <span
+                                                    style="font-weight: 400;"class=" font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1' }} text-capitalize">
+                                                </span>
+
+                                                <br>
+                                                <div
+                                                    class="{{ Session::get('direction') === 'rtl' ? 'pr-2' : 'pl-2' }}">
+                                                    <br>
+                                                    <div class="d-flex mb-3 mb-md-0 align-items-center">
+                                                        <h5 class="font-name"></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
+
                                 </div>
+
+                                <button type="button"
+                                                    onclick="addWishlistAdvertis('{{ $shop['id'] }}')"
+                                                    class="btn position-box"
+                                                    style="color:{{ $web_config['secondary_color'] }};font-size: 18px;">
+                                                    <i class="fa fa-heart-o " aria-hidden="true"></i>
+                                                </button>
+                                <p class="mb-0 position-date">{{ $shop->created_at->diffForHumans() }}</p>
 
                             </div>
                         </div>

@@ -208,6 +208,24 @@
         .dropdown-menu {
             margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: -8px !important;
         }
+
+        @if (Session::get('direction') === 'rtl')
+        .position-box{
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            /* background-color: red; */
+        }
+        @endif
+
+        @if (Session::get('direction') === 'ltr')
+        .position-box{
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            /* background-color: red; */
+        }
+        @endif
     </style>
 
     @php($google_tag_manager_id = \App\CPU\Helpers::get_business_settings('google_tag_manager_id'))

@@ -702,7 +702,8 @@ public function AddAdvertisement()
           'StateAdvertis')->where('status', 'Active')->paginate(15);
 
 
-        return view('web-views.users-profile.display', compact('Advertis'), [
+        $serch_value = '';
+        return view('web-views.users-profile.display', compact('Advertis', 'serch_value'), [
             'CareerSector' => CareerSector::select('id', 'name')->get(),
             'JobTitle' => JobTitle::select('id', 'name')->get(),
             'stateAdvertis' => StateAdvertis::select('id', 'name')->get(),
@@ -784,14 +785,16 @@ public function AddAdvertisement()
          ->where('actor_id', $user)->paginate(15);
 
 
-       return view('web-views.users-profile.MyAllAdvertisment', compact('Advertis'), [
+         $serch_value = '';
+
+       return view('web-views.users-profile.MyAllAdvertisment', compact('Advertis', 'serch_value'), [
            'CareerSector' => CareerSector::select('id', 'name')->get(),
            'JobTitle' => JobTitle::select('id', 'name')->get(),
            'stateAdvertis' => StateAdvertis::select('id', 'name')->get(),
            'CityAdvertis' => CityAdvertis::select('id', 'name')->get(),
        ]);
     }
-    public function search_jop(Request $request)
+    public function search_Advert(Request $request)
     {
         $key = explode(' ', $request['name']);
         $Advertis = Advertis::where(function ($q) use ($key) {
@@ -799,7 +802,33 @@ public function AddAdvertisement()
                 $q->orWhere('name', 'like', "%{$value}%");
             }
         })->paginate(30);
-        return view('web-views.users-profile.display', compact('Advertis'), [
+
+
+        $serch_value = $request->name;
+
+        return view('web-views.users-profile.display', compact('Advertis', 'serch_value'), [
+            'CareerSector' => CareerSector::select('id', 'name')->get(),
+           'JobTitle' => JobTitle::select('id', 'name')->get(),
+           'stateAdvertis' => StateAdvertis::select('id', 'name')->get(),
+           'CityAdvertis' => CityAdvertis::select('id', 'name')->get(),
+        ]);
+    }
+
+    public function search_MyAdvert(Request $request)
+    {
+
+
+        $key = explode(' ', $request['name']);
+        $Advertis = Advertis::where(function ($q) use ($key) {
+            foreach ($key as $value) {
+                $q->orWhere('name', 'like', "%{$value}%");
+            }
+        })->where('actor_type', 'App\Model\User')->where('actor_id', auth('customer')->id())->paginate(30);
+
+
+        $serch_value = $request->name;
+
+        return view('web-views.users-profile.MyAllAdvertisment', compact('Advertis', 'serch_value'), [
             'CareerSector' => CareerSector::select('id', 'name')->get(),
            'JobTitle' => JobTitle::select('id', 'name')->get(),
            'stateAdvertis' => StateAdvertis::select('id', 'name')->get(),
@@ -809,7 +838,7 @@ public function AddAdvertisement()
 
     public function fillterAdvertisement(Request $request){
 
-
+        $serch_value = '';
         if(!$request->state_advertis == null && !$request->city_advertis == null && $request->career_sector == null && $request->job_title == null){
 
                 $Advertis = Advertis::where('state_advertis_id', $request->state_advertis)->where('city_advertis_id', $request->city_advertis)
@@ -831,7 +860,7 @@ public function AddAdvertisement()
 
         }
 
-        return view('web-views.users-profile.display',compact('Advertis'),[
+        return view('web-views.users-profile.display',compact('Advertis', 'serch_value'),[
             'CareerSector' => CareerSector::select('id', 'name')->get(),
             'JobTitle' => JobTitle::select('id', 'name')->get(),
             'stateAdvertis' => StateAdvertis::select('id', 'name')->get(),

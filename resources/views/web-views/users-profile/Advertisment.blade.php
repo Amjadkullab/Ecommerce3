@@ -188,7 +188,10 @@
                         <div class="col-12 col-md-5 rest-part"><br>
                             <label for="">{{ \App\CPU\translate('salary') }} : </label>  <small style="color: red">* {{\App\CPU\translate('opt')}}  </small>
                             <div class="input-group">
-                                <select name="salary_id" id="salary_id"
+
+                                <input type="number" name="expected_salary" id="expected_salary" class="form-control form-control-sm"
+                                    placeholder= {{ \App\CPU\translate('Enter_the_expected_salary') }}>
+                                    <select name="salary_id" id="salary_id" style="width: 40%"
                                     class="js-example-basic-single js-states js-example-responsive form-control color-var-select">
                                     <option value="" disabled selected>
                                         {{ \App\CPU\translate('Select the salary type') }} </option>
@@ -200,8 +203,6 @@
                                         >{{ $expectedSalaries->type }}</option>
                                     @endforeach
                                 </select>
-                                <input type="number" name="expected_salary" id="expected_salary" class="form-control"
-                                    placeholder= {{ \App\CPU\translate('Enter_the_expected_salary') }}>
                             </div>
                         </div>
 
@@ -324,7 +325,7 @@
                         </div>
 
                         <div class="col-12 col-md-5 rest-part"><br>
-                            <label for="">{{ \App\CPU\translate('language_') }} : </label>  <small style="color: red">* {{\App\CPU\translate('req')}}  </small>
+                            <label for="">{{ \App\CPU\translate('language_') }} : </label>  <small style="color: red">* {{\App\CPU\translate('opt')}}  </small>
 
 
                             <select name="langg[]" id="langg" class="js-example-basic-multiple js-states js-example-responsive form-control color-var-select" multiple>
