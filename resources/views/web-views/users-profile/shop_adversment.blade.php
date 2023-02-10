@@ -377,7 +377,7 @@ style="margin-right: 10px;position: relative;text-align:center;text-align: right
             </tr>
             <tr>
                 <td class="width50">{{ \App\CPU\translate('Driving_license_required') }} : {{ $shop->Require_driver_license }}</td>
-                <td class="width30">{{ \App\CPU\translate('salary') }} : {{ $shop->expected_salary }}</td>
+                <td class="width30">{{ \App\CPU\translate('salary') }} : {{ $shop->expected_salary ?? \App\CPU\translate('not_exist') }}</td>
 
             </tr>
 
@@ -390,17 +390,27 @@ style="margin-right: 10px;position: relative;text-align:center;text-align: right
 
             <tr>
 
-                <td class="width30">{{ \App\CPU\translate('skill_') }} :  @foreach ($shop->Skills as $name)
+                <td class="width30">{{ \App\CPU\translate('skill_') }} :  @forelse ($shop->Skills as $name)
+                    {{ $name->name}}
+                    @empty
+                    {{ \App\CPU\translate('not_exist') }}
+                    @endforelse
+            </td>
+                <td class="width30">{{ \App\CPU\translate('License_category') }} : @forelse ($shop->licenses as $name)
                     {{ $name->name }}
-                @endforeach</td>
-                <td class="width30">{{ \App\CPU\translate('License_category') }} : @foreach ($shop->licenses as $name)
-                    {{ $name->name }}
-                @endforeach</td>
+                    @empty
+                    {{ \App\CPU\translate('not_exist') }}
+                    @endforelse
+                </td>
             </tr>
             <tr>
 
-                <td class="width30">{{ \App\CPU\translate('language_')}} :   @foreach ($shop->Languages as $name)
-                    {{ $name->name }}@endforeach</td>
+                <td class="width30">{{ \App\CPU\translate('language_')}} :   @forelse ($shop->Languages as $name)
+                    {{ $name->name }}
+                    @empty
+                    {{ \App\CPU\translate('not_exist') }}
+                    @endforelse
+                </td>
                     <td class="width30">{{ \App\CPU\translate('state')}} :  {{ $shop->StateAdvertis->name }}</td>
 
             </tr>
@@ -409,7 +419,7 @@ style="margin-right: 10px;position: relative;text-align:center;text-align: right
             <tr>
 
                 <td class="width30">{{ \App\CPU\translate('governorate')}} : {{ $shop->CityAdvertis->name  }}</td>
-                <td class="width30">{{ \App\CPU\translate('Neighborhood')}} : {{ $shop->Governorate->name }}</td>
+                <td class="width30">{{ \App\CPU\translate('Neighborhood')}} : {{ $shop->Governorate->name  ?? \App\CPU\translate('not_exist') }}</td>
             </tr>
 
 

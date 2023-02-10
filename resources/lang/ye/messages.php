@@ -2034,4 +2034,5 @@
   'Your_account_deleted_successfully!!' => 'Your account deleted successfully!!',
   'date_publish' => 'Date publish',
   'date_publish' => 'تاريخ النشر:',
+  'not_exist' => 'لا يوجد',
 );

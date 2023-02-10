@@ -2496,4 +2496,5 @@
   'Do you want to delete this ad of yours?' => 'Do you want to delete this advertisement of yours?',
   'date_publish' => 'publish date:',
   'item_removed' => 'Item removed',
+  'not_exist' => 'not exist',
 );

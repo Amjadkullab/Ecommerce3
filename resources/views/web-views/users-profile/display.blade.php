@@ -730,7 +730,7 @@
                                                             onclick="addWishlistAdvertis('{{ $shop['id'] }}')"
                                                             class="btn position-box"
                                                             style="color:{{ $web_config['secondary_color'] }};font-size: 18px;">
-                                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                                            <i class="fa fa-heart-o" onclick="changeClass()" aria-hidden="true"></i>
                                                         </button>
                                         @endif
                                         <p class="mb-0 position-date">{{ $shop->created_at->diffForHumans() }}</p>
@@ -809,6 +809,13 @@
 
 
     <script>
+
+        function changeClass(){
+            let heart = document.querySelector('.fa-heart-o');
+            heart.className = "fa fa-heart";
+
+        }
+
         function addWishlistAdvertis(advertis_id) {
             $.ajaxSetup({
                 headers: {

@@ -1864,7 +1864,7 @@ class AdvertiseController extends Controller
 
         Toastr::success(\App\CPU\translate('Advertis_added_successfully!'));
 
-        return redirect('admin/AddAdvertisement');
+        return redirect('admin/desblayAdvertisement/AddAdvertisement');
     }
 
 

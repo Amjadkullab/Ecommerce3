@@ -666,7 +666,7 @@
                                     </div>
 
                                 </div>
-                                @if (\App\Model\SaveAdvertis::where('users_id', auth('customer')->id())->where('advertis_id', $shop->id)->exists())
+                                {{-- @if (\App\Model\SaveAdvertis::where('users_id', auth('customer')->id())->where('advertis_id', $shop->id)->exists())
 
 
                                 <button type="button"
@@ -685,7 +685,7 @@
                                                     <i class="fa fa-heart-o" aria-hidden="true"></i>
 
                                 </button>
-                                @endif
+                                @endif --}}
                                 <p class="mb-0 position-date">{{ \App\CPU\translate('date_publish')}} {{ $shop->created_at->diffForHumans() }}</p>
 
                             </div>

@@ -231,8 +231,8 @@
 
         .position-box-home{
             position: absolute;
-            top: 1rem;
-            left: 1rem;
+            top: -1rem;
+            left: -1rem;
         }
         @endif
 
