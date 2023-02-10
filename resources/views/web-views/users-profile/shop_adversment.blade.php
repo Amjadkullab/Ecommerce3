@@ -189,9 +189,9 @@
 
             @else
             <button type="button" onclick="addWishlistAdvertis('{{ $shop['id'] }}')"
-                class="btn"
+                class="btn click-heart"
                 style="color:{{ $web_config['secondary_color'] }};font-size: 18px;">
-                <i class="fa fa-heart-o " aria-hidden="true"></i>
+                <i class="fa fa-heart-o" onclick="changeClass()" aria-hidden="true"></i>
             </button><br>
             @endif
         </div>
@@ -550,7 +550,14 @@ style="margin-right: 10px;position: relative;text-align:center;text-align: right
         }
     </script>
     <script>
+
+        function changeClass(){
+            let heart = document.querySelector('.fa-heart-o');
+            heart.className = "fa fa-heart";
+
+        }
         function addWishlistAdvertis(advertis_id) {
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')

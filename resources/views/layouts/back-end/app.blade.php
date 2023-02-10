@@ -44,6 +44,8 @@
             text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};
         }
     </style> -->
+
+
     <script
         src="{{asset('public/assets/back-end')}}/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
     <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/css/toastr.css">

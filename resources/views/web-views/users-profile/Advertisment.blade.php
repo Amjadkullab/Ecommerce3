@@ -473,7 +473,7 @@
                                 {{-- <div id="">
 
                                         </div> --}}
-                                <input type="hidden" id="viewer" name="image">
+                                <input type="text" style="opacity: 0" id="viewer" required  name="image">
                             </div>
                         </div>
 
@@ -675,6 +675,8 @@
 
 
 <script>
+     const imagess = [];
+    const input= document.getElementById('viewer');
     $(function() {
         $("#coba").spartanMultiImagePicker({
             fieldName: 'image[]',
@@ -688,7 +690,11 @@
             },
             dropFileLabel: "Drop Here",
             onAddRow: function(index, file) {
-
+                imagess.push(index);
+                console.log(imagess);
+                if(imagess.length > 1){
+                    input.required = '';
+                }
             },
             onRenderedPreview: function(index) {
 
