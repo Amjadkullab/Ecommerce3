@@ -587,9 +587,7 @@
                 </div>
             @endif
             <!-- top sellers -->
-            <div class="container rtl">
-                <div class="row g-4 pt-2 mt-0 mb-4 pb-2 __deal-of">
-            <div class="col-xl-9 col-md-8 mt-2">
+            <div class="container rtl pt-5 pb-5">
                 <div class="latest-product-margin">
                     <div class="d-flex justify-content-between">
                         <div class="text-center">
@@ -597,70 +595,48 @@
                         </div>
                         <div class="mr-1">
                             <a class="text-capitalize view-all-text"
-                               href="{{route('products',['data_from'=>'latest'])}}">
+                               href="{{route('disblayAdvertisement')}}">
                                 {{ \App\CPU\translate('view_all')}}
                                 <i class="czi-arrow-{{Session::get('direction') === "rtl" ? 'left mr-1 ml-n1 mt-1 float-left' : 'right ml-1 mr-n1'}}"></i>
                             </a>
                         </div>
                     </div>
 
-                    <div class="row mt-0 g-3 ">
+                    <div class="row mt-0 g-3 relative-box-home">
                         @foreach($latest_adverstisment as $shop)
                         <div class="col-xl-3 col-sm-4 col-md-6 col-lg-4 col-12">
-                            <div class="card-body shadow relative-box" style="width: 100%">
+                            <div class="card-body shadow" style="width: 100%">
                                 <div class="direction_advertis">
                                     @if ($shop->image)
-                                        <img style="vertical-align: middle; border-radius: 3%;"
+                                        <a href="{{ route('desblayAdvertisement', $shop->id) }}"><img style="vertical-align: middle; border-radius: 3%;"
                                             class="advertis-view-img"
                                             onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
                                             src="{{ asset('public/uploads/' . $shop->image[0]) }}"
-                                            alt="{{ $shop->name }}">
+                                            alt="{{ $shop->name }}"></a>
                                     @else
-                                        <img style="vertical-align: middle; border-radius: 3%;"
+                                        <a href="{{route('desblayAdvertisement', $shop->id)}}"><img style="vertical-align: middle; border-radius: 3%;"
                                             class="advertis-view-img"
                                             onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
-                                            src="" alt="{{ $shop->name }}">
+                                            src="" alt="{{ $shop->name }}"></a>
                                     @endif
 
 
                                     <div class="advertis-view-body">
 
                                         <div class="text-dark">
-                                            <h1 class="font-weight-bold small">
+                                            <h1 class="font-weight-bold small pt-3">
                                                 {{ \App\CPU\translate('required_') }}
                                                 {{ Str::limit($shop->name, 20) }}
                                                 {{ \App\CPU\translate('to work_for') }}
                                                 {{ Str::limit($shop->advertiseType->name, 20) }}</h1>
-                                            <p class=""> {{ $shop->StateAdvertis->name }} ,
+                                            <p class="small"> {{ $shop->StateAdvertis->name }} ,
                                                 {{ $shop->CityAdvertis->name }} , {{ $shop->Governorate->name }}
                                             </p>
-                                            <p class="advertis-view-body-p" style="color: rebeccapurple">
-                                                {{ $shop->CareerSector->name }}|{{ $shop->JobTitle->name }}|{{ $shop->experience->experiences_level }}|{{ $shop->educationDegree->name }}
+                                            <p class="" style="color: rebeccapurple">
+                                                <button class=" border btn-sm small-btn">{{ $shop->CareerSector->name }}</button> <button class="border btn-sm small-btn">{{ $shop->JobTitle->name }}</button> <button class="border btn-sm small-btn">{{ $shop->experience->experiences_level }}</button> <button class="border btn-sm small-btn">{{ $shop->educationDegree->name }}</button>
                                             </p>
-                                            <div class="advertis-view-body d-flex align-items-center space-between-2">
-                                                <a href="{{ route('desblayAdvertisement', $shop->id) }}"
-                                                    class="btn btn-info"
-                                                    style="margin-top:0px;padding-top:5px;padding-bottom:10px;padding-left:10px;padding-right:10px;bottom:40; margin-right: 5px">{{ \App\CPU\translate('show_advertism_detail') }}</a>
-                                                    <div class=""
-                                                >
-                                                <div
-                                                    class="topbar-text dropdown d-md-none {{ Session::get('direction') === 'rtl' ? 'mr-auto' : 'ml-auto' }}">
-                                                    <a class="topbar-link"
-                                                        href="tel: {{ $web_config['phone']->value }}">
-                                                        <i class="fa fa-phone"></i>
-                                                        {{ $web_config['phone']->value }}
-                                                    </a>
-                                                </div>
-                                                <div
-                                                    class="d-none d-md-block {{ Session::get('direction') === 'rtl' ? 'mr-2' : 'mr-2' }} text-nowrap">
-                                                    <a class="topbar-link d-none d-md-inline-block"
-                                                        href="tel:{{ $web_config['phone']->value }}">
-                                                        <i class="fa fa-phone"></i>
-                                                        {{ $web_config['phone']->value }}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            </div>
+
+
 
 
                                         </div>
@@ -690,14 +666,27 @@
                                     </div>
 
                                 </div>
+                                @if (\App\Model\SaveAdvertis::where('users_id', auth('customer')->id())->where('advertis_id', $shop->id)->exists())
+
 
                                 <button type="button"
                                                     onclick="addWishlistAdvertis('{{ $shop['id'] }}')"
-                                                    class="btn position-box"
+                                                    class="btn position-box-home"
                                                     style="color:{{ $web_config['secondary_color'] }};font-size: 18px;">
-                                                    <i class="fa fa-heart-o " aria-hidden="true"></i>
-                                                </button>
-                                <p class="mb-0 position-date">{{ $shop->created_at->diffForHumans() }}</p>
+                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+
+                                </button>
+                                @else
+
+                                <button type="button"
+                                                    onclick="addWishlistAdvertis('{{ $shop['id'] }}')"
+                                                    class="btn position-box-home"
+                                                    style="color:{{ $web_config['secondary_color'] }};font-size: 18px;">
+                                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+
+                                </button>
+                                @endif
+                                <p class="mb-0 position-date">{{ \App\CPU\translate('date_publish')}} {{ $shop->created_at->diffForHumans() }}</p>
 
                             </div>
                         </div>
@@ -705,8 +694,7 @@
                     </div>
                 </div>
             </div>
-            </div>
-            </div>
+
         @if ($business_mode == 'multi')
             @if(count($top_sellers) > 0)
                 <div class="col-md-6 mt-2 mt-md-0 seller-card" >
@@ -1350,5 +1338,47 @@
             }
         })
     </script>
+
+<script>
+    function addWishlistAdvertis(advertis_id) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{{ route('saveAdvertisment') }}",
+            method: 'POST',
+            data: {
+                advertis_id: advertis_id
+            },
+            success: function(data) {
+                if (data.value == 1) {
+                    Swal.fire({
+                        position: 'top-end',
+                        type: 'success',
+                        title: data.success,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $('.tooltip').html('');
+
+                } else if (data.value == 2) {
+                    Swal.fire({
+                        type: 'info',
+                        title: 'WishList',
+                        text: data.error
+                    });
+                } else {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'WishList',
+                        text: data.error
+                    });
+                }
+            }
+        });
+    }
+</script>
 @endpush
 

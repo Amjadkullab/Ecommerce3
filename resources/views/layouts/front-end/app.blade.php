@@ -209,12 +209,30 @@
             margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: -8px !important;
         }
 
+        .relative-box-home{
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .small-btn{
+            font-size: 12px;
+            padding: 5px 2px;
+            margin: 2px
+        }
+
         @if (Session::get('direction') === 'rtl')
         .position-box{
             position: absolute;
             top: 1rem;
             left: 1rem;
             /* background-color: red; */
+        }
+
+        .position-box-home{
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
         }
         @endif
 
@@ -224,6 +242,11 @@
             top: 1rem;
             right: 1rem;
             /* background-color: red; */
+        }
+        .position-box-home{
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
         }
         @endif
     </style>

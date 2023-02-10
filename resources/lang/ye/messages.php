@@ -2032,4 +2032,6 @@
   'Do you want to delete this ad of yours?' => 'هل تريد حذف اعلانك ؟',
   'Language_' => 'Language ',
   'Your_account_deleted_successfully!!' => 'Your account deleted successfully!!',
+  'date_publish' => 'Date publish',
+  'date_publish' => 'تاريخ النشر:',
 );

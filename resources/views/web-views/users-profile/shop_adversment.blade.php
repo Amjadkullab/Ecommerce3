@@ -172,44 +172,49 @@
 @endpush
 
 @section('content')
-@php($decimal_point_settings = \App\CPU\Helpers::get_business_settings('decimal_point_settings'))
-<div class="container rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-    <div class="row">
-        <div class="container mb-md-4 {{Session::get('direction') === "rtl" ? 'rtl' : ''}} __inline-65">
-            <div class="col-md-8" >
-        <div class="col-md-9 sidebar_heading">
-            <h1 class="h3  mb-0 float-{{Session::get('direction') === "rtl" ? 'right' : 'left'}} headerTitle"><span><p>{{\App\CPU\translate('job advertisement')}} {{ $shop->name }}</p></span></h1><br>
+
+    <div class="container rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
+        <h1 class="h3  mb-0 text-center headerTitle">{{\App\CPU\translate('job advertisement')}}<span><p style="color: red">{{ $shop->name }}</p></span></h1>
+
+    </div>
+    <div class="container rtl d-flex align-items-center justify-content-between">
+        <div>
+            @if (\App\Model\SaveAdvertis::where('users_id', auth('customer')->id())->where('advertis_id', $shop->id)->exists())
+
+            <button type="button" onclick="addWishlistAdvertis('{{ $shop['id'] }}')"
+                class="btn"
+                style="color:{{ $web_config['secondary_color'] }};font-size: 18px;">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+            </button><br>
+
+            @else
+            <button type="button" onclick="addWishlistAdvertis('{{ $shop['id'] }}')"
+                class="btn"
+                style="color:{{ $web_config['secondary_color'] }};font-size: 18px;">
+                <i class="fa fa-heart-o " aria-hidden="true"></i>
+            </button><br>
+            @endif
         </div>
+        <div class="d-flex mb-3 mb-md-0 align-items-center">
+            <h5 class="font-name"style="text-align:justify; margin-left: 11px;">{{$customerDetail->f_name. ' '.$customerDetail->l_name}}</h5>
+            <img id="blah"
+                class="rounded-circle border __inline-48"
+                onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                src="{{asset('storage/app/public/profile')}}/{{$customerDetail['image']}}" style=" margin-right:3px;"><br>
+
         </div>
+
+    </div>
+    <div class="container rtl">
+        <div class="topbar-text dropdown d-md-none {{ Session::get('direction') === 'rtl' ? 'mr-auto' : 'ml-auto' }}">
+            <a class="topbar-link btn btn-info btn-sm" href="tel: {{ $web_config['phone']->value }}"><i class="fa fa-phone"></i>{{ $web_config['phone']->value }}</a>
+        </div>
+        <div class="d-none d-md-block {{ Session::get('direction') === 'rtl' ? 'mr-2' : 'mr-2' }} text-nowrap">
+            <a class="topbar-link d-none d-md-inline-block btn btn-info btn-sm" href="tel:{{ $web_config['phone']->value }}"><i class="fa fa-phone"></i>{{ $web_config['phone']->value }}</a>
         </div>
     </div>
-    <div class="container mb-md-4 {{Session::get('direction') === "rtl" ? 'rtl' : ''}} __inline-65">
-        <div class="col-md-8" >
-            <h4 class="mt-2 text-start"><p>{{ $shop->created_at->diffForHumans() }}</p></h4>
-        </div>
-
-        </div>
-</div>
 
 
-{{-- <span style="font-weight: 400;"class=" font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}} text-capitalize">  {{$countWishlist}} {{\App\CPU\translate('wish_listed')}} </span>
-<button type="button" onclick="addWishlist('{{$shop['id']}}')"
-class="btn for-hover-bg"
-style="color:{{$web_config['secondary_color']}};font-size: 18px;">
-<i class="fa fa-heart-o "
-aria-hidden="true"></i>
-<span class="countWishlist-{{$shop['id']}}">{{$countWishlist}}</span>
-</button><br> --}}
-
-
-
-    <div class="d-flex mb-3 mb-md-0 align-items-center">
-        <img id="blah"
-            class="rounded-circle border __inline-48"
-            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-            src="{{asset('storage/app/public/profile')}}/{{$customerDetail['image']}}" style=" margin-right:3px;">
-            <h5 class="font-name"style="text-align:justify; margin-left: 11px;">{{$customerDetail->f_name. ' '.$customerDetail->l_name}}</h5><br>
-</div>
 <div class="d-flex mb-3 mb-md-1 align-items-center">
 <div class="container rtl">
 <div class="col-md-9"
@@ -218,34 +223,12 @@ style="margin-right: 10px;position: relative;text-align:center;text-align: right
     style="font-weight: 400;"class=" font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1' }} text-capitalize">
 </span>
 
-<button type="button" onclick="addWishlistAdvertis('{{ $shop['id'] }}')"
-    class="btn for-hover-bg"
-    style="color:{{ $web_config['secondary_color'] }};font-size: 18px;">
-    <i class="fa fa-heart-o " aria-hidden="true"></i>
-</button><br>
-<div
-    class="{{ Session::get('direction') === 'rtl' ? 'pr-2' : 'pl-2' }}">
-    <br>
-    <div class="d-flex mb-3 mb-md-0 align-items-center">
-        <h5 class="font-name"></h5>
-    </div>
-</div>
+
 </div>
 </div>
 </div>
 
-<div class="container rtl" style="margin-right: 10px;position: relative;text-align:center;text-align: right; position: absolute;right:14%;">
-    <div class="topbar-text dropdown d-md-none {{Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'}}">
-        <a class="topbar-link" href="tel: {{$web_config['phone']->value}}">
-            <i class="fa fa-phone"></i> {{$web_config['phone']->value}}
-        </a>
-    </div>
-    <div class="d-none d-md-block {{Session::get('direction') === "rtl" ? 'mr-2' : 'mr-2'}} text-nowrap">
-        <a class="topbar-link d-none d-md-inline-block" href="tel:{{$web_config['phone']->value}}">
-            <i class="fa fa-phone"></i> {{$web_config['phone']->value}}
-        </a>
-    </div>
-</div>
+
 
 
 <div class="container pb-5 mb-2 mb-md-4 mt-3 rtl"  style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">

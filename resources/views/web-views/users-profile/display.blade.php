@@ -715,13 +715,24 @@
                                             </div>
 
                                         </div>
+                                        @if (\App\Model\SaveAdvertis::where('users_id', auth('customer')->id())->where('advertis_id', $shop->id)->exists())
 
                                         <button type="button"
                                                             onclick="addWishlistAdvertis('{{ $shop['id'] }}')"
                                                             class="btn position-box"
                                                             style="color:{{ $web_config['secondary_color'] }};font-size: 18px;">
-                                                            <i class="fa fa-heart-o " aria-hidden="true"></i>
+                                                            <i class="fa fa-heart" aria-hidden="true"></i>
                                                         </button>
+
+                                        @else
+
+                                        <button type="button"
+                                                            onclick="addWishlistAdvertis('{{ $shop['id'] }}')"
+                                                            class="btn position-box"
+                                                            style="color:{{ $web_config['secondary_color'] }};font-size: 18px;">
+                                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                                        </button>
+                                        @endif
                                         <p class="mb-0 position-date">{{ $shop->created_at->diffForHumans() }}</p>
 
                                     </div>
