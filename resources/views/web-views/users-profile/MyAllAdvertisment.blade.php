@@ -550,7 +550,6 @@
 
                                                 <div class="col-md-8" style="top: 10%">
                                                     <div class="advertis-view-body">
-
                                                     </div>
                                                 </div>
                                             </div>

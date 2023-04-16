@@ -101,15 +101,19 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
     Route::get('account-delete/{id}','UserProfileController@account_delete')->name('account-delete');
      Route::get('AddAdvertisement', 'UserProfileController@AddAdvertisement')->name('AddAdvertisement')->middleware('customer');
     Route::post('AddAdvertisement', 'UserProfileController@storeAdvertisement')->name('storeAdvertisement')->middleware('customer');
+     Route::get('searchjob', 'UserProfileController@searchjob')->name('searchjob')->middleware('customer');
+    Route::post('searchjob', 'UserProfileController@storesearchjob')->name('storesearchjob')->middleware('customer');
    Route::get('disblayAdvertisement', 'UserProfileController@disblayAdvertisement')->name('disblayAdvertisement');
    Route::get('desblayAdvertisement/{id}', 'UserProfileController@disblay_Advertisement')->name('desblayAdvertisement');
    Route::get('MyAdvertismentDisblay', 'UserProfileController@MyAdvertis')->name('MyAdvertisment');
+   Route::get('MyworkDisblay', 'UserProfileController@MyworkDisblay')->name('MyworkDisblay');
 
 
    Route::get('wishlists_advertis', 'UserProfileController@wishlistsAdvertisment')->name('wishlistsAdvertisment');
    Route::post('saveAdvertis', 'UserProfileController@saveAdvertisment')->name('saveAdvertisment');
    Route::post('delete-`wishlist`', 'UserProfileController@deleteWishlistAdvertis')->name('delete-wishlistAdvertis');
    Route::delete('deleteAdvertis', 'UserProfileController@deleteAdvertis')->name('deleteAdvertis');
+   Route::delete('deletework', 'UserProfileController@deletework')->name('deletework');
 
     Route::get('search-Adversment', 'UserProfileController@search_Advert')->name('search-jop');
     Route::get('search-MyAdversment', 'UserProfileController@search_MyAdvert')->name('search-Myjop');

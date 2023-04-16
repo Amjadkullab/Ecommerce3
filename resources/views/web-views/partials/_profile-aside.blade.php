@@ -98,6 +98,20 @@
                 <a class="{{ Request::is('wishlists_advertis*') && !Request()->is('admin/wishlists*') ?'active-menu':''}}" href="{{ route('wishlistsAdvertisment') }}">{{\App\CPU\translate('Favorite advertisments')}}</a></h3>
             </div>
         </div>
+        <div>
+            <!-- Filter by price-->
+            <div class="widget-title">
+                <a class="{{(Request::is('searchjob*') || Request::is('searchjob*'))?'active-menu':''}}"
+                href="{{ route('searchjob') }}">{{\App\CPU\translate('searchjob')}}</a></h3>
+            </div>
+        </div>
+        <div>
+            <!-- Filter by price-->
+            <div class="widget-title">
+                <a class="{{(Request::is('MyworkDisblay*') || Request::is('MyworkDisblay*'))?'active-menu':''}}"
+                href="{{ route('MyworkDisblay') }}">{{\App\CPU\translate('View job search ads')}}</a></h3>
+            </div>
+        </div>
 
     </div>
 </div>

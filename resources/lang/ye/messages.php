@@ -2032,7 +2032,15 @@
   'Do you want to delete this ad of yours?' => 'هل تريد حذف اعلانك ؟',
   'Language_' => 'Language ',
   'Your_account_deleted_successfully!!' => 'Your account deleted successfully!!',
-  'date_publish' => 'Date publish',
   'date_publish' => 'تاريخ النشر:',
   'not_exist' => 'لا يوجد',
+  'login_first' => 'Login first',
+  'searchjob' => 'البحث عن وظيفة',
+  'Please write' => 'يرجى كتابة العمر و سنوات الخبرة والتخصص و وصف عن التخصص و الدورات التي تم المشاركة فيها و ساعات العمل و رقم الهاتف و البريد الالكتروني',
+  'searchjob_added_successfully!' => 'تمت الاضافة بنجاح انتظر الموافقة!',
+  'View job search ads'=>'عرض اعلانات البحث عن وظيفة',
+  'Here you can view and manage job search ads'=>'هنا يمكنك مشاهدة اعلانات البحث عن الوظيفة وادارتها',
+  'Agree, agree, communicate with you as soon as'=>' تم الموافقة سيتم التواصل معك في أقرب وقت'
+
+
 );

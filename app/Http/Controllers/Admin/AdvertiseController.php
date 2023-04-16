@@ -2,31 +2,32 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Model\Advertis;
-use Illuminate\Http\Request;
+use App\Model\Work;
+use App\Model\Skill;
+use App\Model\Salary;
 
-use App\Model\CityAdvertis;
-use App\Model\AdvertiseType;
-use App\Model\CareerSector;
-use App\Model\EducationDegree;
-use App\Model\Experience;
-use App\Model\ExtraBenefit;
-use App\Model\Governorate;
+use App\Model\License;
+use App\Model\Advertis;
 use App\Model\JobTitle;
 use App\Model\Language;
-use App\Model\License;
+use App\Model\WorkDays;
+use App\Model\Experience;
+use App\Model\Governorate;
 use App\Model\Nationality;
-use App\Model\Salary;
-use App\Model\Skill;
-use App\Model\StateAdvertis;
 use App\Model\Translation;
+use App\Model\CareerSector;
+use App\Model\CityAdvertis;
+use App\Model\ExtraBenefit;
 use App\Model\TypeContract;
 use App\Model\TypeWorkHour;
-use App\Model\WorkDays;
+use App\Model\AdvertiseType;
+use App\Model\StateAdvertis;
+use Illuminate\Http\Request;
+use App\Model\EducationDegree;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class AdvertiseController extends Controller
@@ -1648,6 +1649,15 @@ class AdvertiseController extends Controller
             'Advertis' => $Advertis,
         ]);
     }
+    public function desblayworkCustomer(){
+        $Advertis = Work::where('actor_type', 'App\Model\User')->get();
+
+        return view('admin-views.Advertisement.desbladywork', [
+
+            'Advertis' => $Advertis,
+        ]);
+    }
+
 
     public function AddAdvertisement()
     {
@@ -1678,6 +1688,13 @@ class AdvertiseController extends Controller
 
     public function statusAdvertisement(Request $request){
         $Advertis = Advertis::findOrFail($request->id);
+        $Advertis->status = ($Advertis['status'] == 'InActive') ? 'Active' : 'InActive';
+        $Advertis->save();
+        $data = $request->status;
+        return response()->json($data);
+    }
+    public function statuswork(Request $request){
+        $Advertis = Work::findOrFail($request->id);
         $Advertis->status = ($Advertis['status'] == 'InActive') ? 'Active' : 'InActive';
         $Advertis->save();
         $data = $request->status;
@@ -1963,6 +1980,72 @@ class AdvertiseController extends Controller
              }
 
          }
+
+
+         Toastr::success(\App\CPU\translate('updated_successfully!'));
+
+         return back();
+     }
+
+
+
+    public function Editwork($id){
+
+        $Advertis = Work::findOrFail($id);
+        // $lan = $Advertis->Languages;
+            // $con = [];
+
+
+            // dd($con);
+            // dd($Advertis->Languages()->get());
+
+            return view('admin-views.Advertisement.Editwork', compact('Advertis')
+    );
+    }
+
+     //  طھط¹ط¯ظٹظ„ ط§ظ„ظ‚ط·ط§ط¹ ط§ظ„ظˆط¸ظٹظپظٹ
+     public function updatework(Request $request, $id)
+     {
+
+
+
+         $Advertis = Work::findOrFail($id);
+
+         $data = $request->except('description');
+
+
+        $data['description'] = $request->description;
+        $Advertis->update($data);
+
+
+
+
+         $Advertis->save();
+
+        //  foreach ($request->lang as $index => $key) {
+        //      if ($request->name[$index] && $key != 'en') {
+        //         Translation::updateOrInsert(
+        //             ['translationable_type' => 'App\Model\Work',
+        //                 'translationable_id' => $Advertis->id,
+        //                 'locale' => $key,
+        //                 'key' => 'name'],
+        //             ['value' => $request->name[$index]]
+        //         );
+        //      }
+
+
+
+        //      if ($request->description[$index] && $key != 'en') {
+        //         Translation::updateOrInsert(
+        //             ['translationable_type' => 'App\Model\Work',
+        //                 'translationable_id' => $Advertis->id,
+        //                 'locale' => $key,
+        //                 'key' => 'description'],
+        //             ['value' => $request->description[$index]]
+        //         );
+        //      }
+
+        //  }
 
 
          Toastr::success(\App\CPU\translate('updated_successfully!'));
@@ -2279,6 +2362,17 @@ class AdvertiseController extends Controller
                                     ->where('translationable_id', $request->id);
         $translation->delete();
         Advertis::destroy($request->id);
+
+        return response()->json();
+
+    }
+    public function deletework(Request $request){
+
+
+        $translation = Translation::where('translationable_type','App\Model\Work')
+                                    ->where('translationable_id', $request->id);
+        $translation->delete();
+        Work::destroy($request->id);
 
         return response()->json();
 

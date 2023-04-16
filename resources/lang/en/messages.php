@@ -2497,4 +2497,11 @@
   'date_publish' => 'publish date:',
   'item_removed' => 'Item removed',
   'not_exist' => 'not exist',
+  'searchjob' => 'search job',
+  'Please write' => 'Please write the age, years of experience, specialization, a description of the specialization, the courses participated in, working hours, phone number and e-mail',
+  'searchjob_added_successfully!' => 'Added successfully, waiting for approval!',
+  'View job search ads'=>'View job search advertisement',
+  'Here you can view and manage job search ads'=>'Here you can view and manage job search advertisement',
+  'Agree, agree, communicate with you as soon as'=>'Approved, you will be contacted as soon as possible'
+
 );

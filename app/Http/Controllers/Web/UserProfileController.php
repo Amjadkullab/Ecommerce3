@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Web;
 
 use App\User;
+use App\Model\Work;
 use Carbon\Carbon;
 use App\CPU\Convert;
 use App\CPU\Helpers;
 use App\Model\Order;
 use App\Model\Skill;
 use App\Model\Salary;
+use App\SaveAdvertis;
 use App\Model\License;
 use App\Model\Advertis;
 use App\Model\JobTitle;
@@ -43,12 +45,11 @@ use App\Model\DeliveryCountryCode;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Model\SaveAdvertis as ModelSaveAdvertis;
-use App\SaveAdvertis;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Model\SaveAdvertis as ModelSaveAdvertis;
 
 class UserProfileController extends Controller
 {
@@ -665,6 +666,48 @@ public function AddAdvertisement()
         // return redirect('AddAdvertisement')->with('message', 'Advertis_added_successfully!');
 
 }
+public function searchjob()
+{
+
+    return view('web-views.users-profile.search_job');
+}
+
+    public function storesearchjob(Request $request)
+    {
+
+
+
+        $user = auth('customer')->user()->id;
+        // dd($user);
+        $actorType = 'App\Model\User';
+        $Advertis = Work::create([
+            'description' => $request->description,
+            'actor_type' => $actorType,
+            'actor_id' => $user,
+        ]);
+
+
+
+        $issaved = $Advertis->save();
+
+
+
+
+
+
+
+    Toastr::success(\App\CPU\translate('searchjob_added_successfully!'));
+
+    return redirect('searchjob')->with('message', 'searchjob_added_successfully!');
+
+
+
+
+        // Toastr::success(\App\CPU\translate('Advertis_added_successfully!'));
+
+        // return redirect('AddAdvertisement')->with('message', 'Advertis_added_successfully!');
+
+}
 
 
     protected function uploadAttachments(Request $request)
@@ -793,6 +836,17 @@ public function AddAdvertisement()
            'stateAdvertis' => StateAdvertis::select('id', 'name')->get(),
            'CityAdvertis' => CityAdvertis::select('id', 'name')->get(),
        ]);
+    }
+    public function MyworkDisblay()
+    {
+        $user = auth('customer')->user()->id;
+        $Advertis = Work::where('actor_type', 'App\Model\User')
+         ->where('actor_id', $user)->paginate(15);
+
+
+         $serch_value = '';
+
+       return view('web-views.users-profile.MyAllwork', compact('Advertis', 'serch_value'));
     }
     public function search_Advert(Request $request)
     {
@@ -924,6 +978,16 @@ public function AddAdvertisement()
     public function deleteAdvertis(Request $request){
 
         $Isdeleted = Advertis::where('id', $request->id)->first();
+
+        $Isdeleted::destroy($request->id);
+
+        return Toastr::success (\App\CPU\translate('deleted_Successfully_'));
+
+
+            }
+    public function deletework(Request $request){
+
+        $Isdeleted = Work::where('id', $request->id)->first();
 
         $Isdeleted::destroy($request->id);
 

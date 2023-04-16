@@ -740,6 +740,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::get('Advertisement/favorite', [AdvertiseController::class, 'favorite'])->name('favorite');
     Route::get('Advertisement/show', [AdvertiseController::class, 'show'])->name('show');
 
+    Route::get('desblayworkCustomer', 'AdvertiseController@desblayworkCustomer')->name('desblayworkCustomer');
 
+    Route::put('desblaywork/statusForAdmin', 'AdvertiseController@statuswork')->name('statuswork');
+    Route::get('work/Edit/{id}', [AdvertiseController::class, 'Editwork'])->name('Editwork');
+    Route::put('wok/Edit/{id}', 'AdvertiseController@updatework')->name('updatework');
+    Route::delete('work', 'AdvertiseController@deletework')->name('deletework');
 
 });

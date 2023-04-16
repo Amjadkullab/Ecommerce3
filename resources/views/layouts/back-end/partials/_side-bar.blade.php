@@ -850,6 +850,14 @@
                                         class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate"> {{ \App\CPU\translate('show_advertisment_customer')}}</span>
                                 </a>
                             </li>
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/desblayworkCustomer') || Request::is('admin/desblayworkCustomer/*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                href="{{ route('admin.desblayworkCustomer') }}">
+                                    <i class="tio-photo-square-outlined nav-icon"></i>
+                                    <span
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate"> {{ \App\CPU\translate('View job search ads')}}</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 

@@ -115,6 +115,7 @@
                                         </div><!-- col-4 -->
 
 
+
                                     </div><br>
 
                                     <div class="row">
@@ -160,6 +161,7 @@
                                         <td >{{ $Advertises->name }}</td>
                                         <td>{{ $Advertises->CareerSector->name }}</td>
                                         <td>{{ $Advertises->JobTitle->name }}</td>
+
 
                                         <td>
                                             <label class="switch">
